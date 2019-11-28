@@ -1,0 +1,136 @@
+<main class="page-content content-wrap">
+  <ng4-loading-spinner [threshold]="2000" [timeout]="4000" [loadingText]="'Please wait...'" [zIndex]="9999">
+  </ng4-loading-spinner>
+  <div class="fix-header fix-sidebar">
+    <div class="page-inner">
+      <div class="page-title">
+        <h3>Highest Referral Person</h3>
+        <div class="page-breadcrumb">
+          <ol class="breadcrumb">
+            <li>
+              <a routerLink="/">Dashboard</a>
+            </li>
+            <li class="active">Highest Referral Person</li>
+          </ol>
+        </div>
+      </div>
+      <div id="main-wrapper">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel">
+              <div class="panel-body" style="margin-top:1.5px;">
+                <!-- <div class="row">
+                      <h4 style="margin-left: 15px">Highest Referral Person</h4>
+                    
+                  </div> -->
+
+                <!-- <div>
+                  <div class="form-group" style="float: right">
+                    <button type="button" class="btn btn-success btn" routerLink=""
+                      style="background-color:#856c51;float: right;">Back</button>
+                  </div>
+                </div> -->
+
+                <!-- <form style="margin-top:30px;" [formGroup]="highestrefferalForm"
+                  (ngSubmit)="consumergetRedeemptionList(highestrefferalForm.value,0)" class="form-horizontal"> -->
+
+                  <div class="row">
+
+                    <div class="col-sm-10">
+                      <div class="form-group" style="float: right">
+
+                        <button type="button"
+                          (click)="exportToExcel()" class="btn btn-success btn"
+                          style="background-color:#856c51;">
+                          <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                          Export</button>
+                      </div>
+                    </div>
+
+                  </div>
+
+                <!-- </form> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Row -->
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel panel-white">
+
+              <div style="clear:both"></div>
+              <div class="panel-body">
+                <div class="table-responsive">
+                  <table id="example" class="display table" style="width: 100%;">
+
+
+                    <thead>
+                      <tr>
+
+
+                        <th style="background-color: #856c51;color:white;padding-left: 2%">
+                          Customer Name
+
+                        </th>
+                        <th style="background-color: #856c51;color:white;padding-left: 2%">
+                          Mobile
+
+                        </th>
+                        <th  style="background-color: #856c51;color:white;padding-left: 2%">
+                          No.of Reference
+
+                        </th>
+                        <th  style="background-color: #856c51;color:white;padding-left: 2%">
+                          Action
+
+                        </th>
+
+
+
+                      </tr>
+                    </thead> 
+                    <tbody>
+                      <tr
+                          *ngFor="let x of highestRefferalListData  | paginate: { itemsPerPage: 10, currentPage: p, totalItems:countItems };let i = index">
+                          <td style="padding-left: 2%">{{x.name}}</td>
+                          <td style="padding-left: 2%">{{x.mobile}}</td>
+                          <td style="padding-left: 2%">{{x.refferalCount}}</td>
+                         <td>
+                            <button type="button"  (click)="view(x.consumerId)" class="btn btn-success btn-rounded"
+                            style="margin-left: 10%; background:#856c51;">
+                            View
+                          </button>
+                         </td> 
+                        </tr>
+                       
+                         
+                      <td>
+                        <!-- <button type="submit" (click)="view(x.consuemrId)" class="btn btn-success btn-rounded"
+                          style="margin-left: 17%; background:#856c51;">
+                          View
+                        </button> -->
+                        
+                      </td>
+                    </tbody>
+                  </table>
+
+                  <div *ngIf="!highestRefferalListData?.length" class="col-md-12 col-centered text-center">
+                    <b>No Data Found</b>
+                  </div>
+                  <!-- <pagination-controls (pageChange)="p = $event"
+                    (click)="consumergetRedeemptionList(highestrefferalForm.value,p)" class="my-pagination">
+                  </pagination-controls> -->
+                  <pagination-controls (pageChange)="p = $event;onPaginateChange($event,highestrefferalForm.value,p)"
+                    class="my-pagination">
+                  </pagination-controls>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

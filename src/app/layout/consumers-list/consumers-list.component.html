@@ -1,0 +1,240 @@
+<main class="page-content content-wrap">
+  <ng4-loading-spinner [threshold]="2000" [timeout]="4000" [loadingText]="'Please wait...'" [zIndex]="9999">
+  </ng4-loading-spinner>
+  <div class="fix-header fix-sidebar">
+    <div class="page-inner">
+      <div class="page-title">
+        <h3>Total Registered Consumers</h3>
+        <div class="page-breadcrumb">
+          <ol class="breadcrumb">
+            <li>
+              <a style="cursor: pointer" routerLink="/">Dashboard</a>
+            </li>
+            <li class="active">Total Registered Consumers</li>
+          </ol>
+        </div>
+
+      </div>
+      <div id="main-wrapper">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel">
+              <div class="panel-body" style="margin-top:1.5px;">
+                <form style="margin-top:30px;" [formGroup]="GpsLocationForm"
+                  (ngSubmit)="searchlist(GpsLocationForm.value)" class="form-horizontal">
+                  <h4 style="margin-top: 0;">Total Customers {{customersCount}}</h4>
+                  <br>
+                  <div class="row">
+
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <div class="col-md-7">
+                          <input formControlName="mobile" type="text" placeholder="Mobile Number"
+                            (keypress)="keyPress($event)" autocomplete="off" minlength=10 maxlength=10
+                            class="form-control" id="input-help-block" style="margin-left: 15px;">
+                        </div>
+                        <button type="button" class="btn btn-success btn" (click)="mobilesearch(GpsLocationForm.value)"
+                          style="background-color:#000000;padding: 7px 25px;">SEARCH</button>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <div class="col-md-7">
+                          <input formControlName="name" type="text" placeholder="Customer Name" autocomplete="off"
+                            class="form-control" id="input-help-block" style="margin-left: 15px;">
+                        </div>
+                        <button type="button" class="btn btn-success btn"
+                          (click)="customersearch(GpsLocationForm.value)"
+                          style="background-color:#000000;padding: 7px 25px;">SEARCH</button>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4" style="margin-left: -100px">
+                      <div class="form-group">
+                        <label class="col-md-4 control-label" style="text-align:right;">Status</label>
+                        <span class="error col-md-1" style="padding: 0px;"></span>
+                        <div class="col-md-7" style="margin-left: 1px">
+                          <select selected formControlName="status" class="form-control">
+                            <option value="">
+                              <b>-----Select</b>-----</option>
+                            <option value="1">Active</option>
+                            <option value="0">In Active</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row text-center">
+                      <div class="col-md-4">
+                      </div>
+                      <div class="col-md-4" style="float: right">
+                        <button type="submit" [disabled]="!GpsLocationForm.valid"
+                          style="background:#856c51;border-radius: 0px" class="btn btn-success btn-rounded">
+                          <i class="fa fa-eye" aria-hidden="true"></i> View
+                        </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="button" [disabled]="!GpsLocationForm.valid"
+                          (click)="exportToExcel(GpsLocationForm.value)" style="background:#856c51;border-radius: 0px"
+                          class="btn btn-success btn-rounded">
+                          <i class="fa fa-eye" aria-hidden="true"></i> Export
+                        </button>
+                      </div>
+                    </div>
+                    <!-- <div class="col-md-2">
+                      <button type="submit" [disabled]="!GpsLocationForm.valid" style="background:#856c51;"
+                        class="btn btn-success btn-rounded">
+                        <i class="fa fa-eye" aria-hidden="true"></i> View Report
+                      </button>
+                    </div> -->
+
+
+                    <!-- <div class="col-md-2">
+                      <button type="button" [disabled]="!GpsLocationForm.valid"
+                        (click)="exportToExcel(GpsLocationForm.value)" class="btn btn-success btn"
+                        style="background-color:#856c51;float:left;">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                        Export</button>
+                    </div> -->
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Row -->
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel panel-white">
+              <div style="clear:both"></div>
+              <div class="panel-body">
+                <!-- <div class="col-md-12 text-right"> -->
+                    <div class="col-sm-2" >
+                        <button type="button" (click)="all(GpsLocationForm.value)" class="all">
+                          All
+                        </button>
+                      </div> 
+                      <div class="col-sm-2" >
+                        <button type="button" style="margin-left: -110px" (click)="pending(GpsLocationForm.value)" class="btnpending">
+                          Pending
+                        </button>
+                      </div>
+                      <div class="col-sm-2" >
+                        <button type="button" style="margin-left: -188px" (click)="approve(GpsLocationForm.value)" class="btnapprove">
+                          Approved
+                        </button>
+                      </div>
+                      <div class="col-sm-2" >
+                        <button type="button" style="margin-left: -253px" (click)="reject(GpsLocationForm.value)" class="btnreject">
+                          Rejected
+                        </button> 
+                      </div>
+    
+                      <div class="col-sm-2" >
+                        <button type="button" style="margin-left: -325px" (click)="incomplete(GpsLocationForm.value)" class="btnincomplete">
+                          Incomplete
+                        </button>
+                      </div>
+                  <div class="col-sm-2">
+                    <button type="button" class="btn btn-success btn" routerLink="/consumers-add"
+                      style="background-color:#856c51;"> <i class="fa fa-plus" aria-hidden="true"></i> Add
+                      Consumer</button>
+                  </div>
+                <!-- </div> -->
+                <div>&nbsp;</div>
+                <div class="table-responsive">
+                  <table id="example" class="display table" style="width: 100%;">
+                    <thead>
+                      <tr>
+                        <th style="background-color: #856c51;color:white;padding-left: 2%">Name
+
+                        </th>
+                        <th style="width:15%;background-color: #856c51;color:white;padding-left: 2%">Mobile/Email
+
+                        </th>
+                        <th style="width:20%;background-color: #856c51;color:white;padding-left: 2%">Address
+
+                        </th>
+                        <!-- <th 
+                          style="width:20%;background-color: #856c51;color:white;padding-left: 2%">Bank Details
+
+                        </th> -->
+                        <th style="width:20%;background-color: #856c51;color:white;padding-left: 2%">KYC Status
+
+                        </th>
+                        <th style="width:10%;background-color: #856c51;color:white;padding-left: 2%">Status
+
+                        </th>
+                        <th style="width:20%;background-color: #856c51;color:white;padding-left: 2%">Ref.Code
+
+                        </th>
+                        <th style="background-color: #856c51;color:white;padding-left: 2%">PAN
+
+                        </th>
+
+                        <th style="width:15%;background-color: #856c51;color:white;padding-left: 2%">Created On
+                        </th>
+                        <th style="background-color: #856c51;color:white;padding-left: 2%">Action
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr
+                        *ngFor="let x of getConsumerslist  | paginate: { itemsPerPage: 10, currentPage: p};let i = index">
+                        <td style="padding-left: 2%">{{x.firstName}}</td>
+                        <td style="padding-left: 2%">
+                          {{x.mobile}}<br> <span *ngIf="x.email != null && x.email != ''">{{x.email}}</span></td>
+
+                        <td style="padding-left: 2%">
+                          <span *ngIf="x.address1 != null && x.address1 != ''">{{x.address1}},<br></span>
+                          <span *ngIf="x.address2 != null && x.address2 != ''">{{x.address2}},<br></span>
+                          <span *ngIf="x.locality != null && x.locality != ''">{{x.locality}},<br></span>
+                          <span *ngIf="x.city != null && x.city != ''">{{x.city}},<br></span>
+                          <span *ngIf="x.state != null && x.state != ''">{{x.state}}-<br></span>
+                          <span *ngIf="x.pincode != null && x.pincode != ''">{{x.pincode}}.</span>
+                        </td>
+                        <!-- <td style="padding-left: 2%">
+                          <span *ngIf="x.bankAccNum != null && x.bankAccNum != ''">{{x.bankAccNum}}/<br></span>
+                          <span *ngIf="x.bankName != null && x.bankName != ''">{{x.bankName}}/<br></span>
+                          <span *ngIf="x.branch != null && x.branch != ''">{{x.branch}}/<br></span>
+                          <span *ngIf="x.ifscCode != null && x.ifscCode != ''">{{x.ifscCode}}<br></span>
+                        </td> -->
+                        <td style="padding-left: 2%"><span *ngIf="x.kycStatusId==11"
+                            class="approve">{{x.kycStatus}}</span>
+                          <span *ngIf="x.kycStatusId==12" class="pending">{{x.kycStatus}}</span>
+                          <span *ngIf="x.kycStatusId==13" class="reject">{{x.kycStatus}}</span>
+                          <span *ngIf="x.kycStatusId==10" class="incomplete">{{x.kycStatus}}</span>
+
+
+                        </td>
+                        <td style="padding-left: 2%">{{x.active}}</td>
+                        <td style="padding-left: 2%">{{x.RefferalCode}}</td>
+
+                        <td style="padding-left: 2%"><span *ngIf="x.pan != null && x.pan != ''">{{x.pan}}</span></td>
+                        <td style="padding-left: 2%">{{x.createddate | date:'dd MMM yyyy h:mm a'}}
+                        </td>
+                        <td>
+                          <button type="submit" (click)="editConsumer(x.consuemrId)" class="btn btn-success btn-rounded"
+                            style="margin-left: 17%; background:#856c51;">
+                            Edit
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+ 
+                  <div *ngIf="! getConsumerslist?.length" class="col-md-12 col-centered text-center">
+                    <b>No Data Found</b>
+                  </div>
+                  <pagination-controls (pageChange)="p = $event;onPaginateChange($event,GpsLocationForm.value)"
+                    class="my-pagination">
+                  </pagination-controls>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,235 @@
+<main class="page-content content-wrap">
+  <ng4-loading-spinner [threshold]="2000" [timeout]="4000" [loadingText]="'Please wait...'" [zIndex]="9999">
+  </ng4-loading-spinner>
+  <div class="fix-header fix-sidebar">
+    <div class="page-inner">
+      <div class="page-title">
+        <h3>View Redeemable Order </h3>
+        <div class="page-breadcrumb">
+          <ol class="breadcrumb">
+            <li>
+              <a routerLink="/">Dashboard</a>
+            </li>
+            <li>
+              <a routerLink="/coupon-order-list">Coupon Orders</a>
+            </li>
+            <li class="active">View Redeemable Coupons</li>
+          </ol>
+        </div>
+      </div>
+      <div id="main-wrapper">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 fade-element-in animated zoomIn" >
+          <div class="panel info-box panel-white">
+            <div class="panel-body" style="height: 107px;">
+              <div class="info-box-stats">
+                <p style="text-align: left;">
+                  <span class="counter">{{couponsCount.activeCoupons}}</span>
+                </p>
+                <span class="info-box-title"  style="font-weight: bold; text-align: left;">Total Coupons Active</span>
+              </div>
+              <div class="info-box-icon">
+                <i class="fa fa-tag" style="color:#856c51;"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 animated zoomIn">
+            <div class="panel info-box panel-white">
+              <div class="panel-body" style="height: 107px;">
+                <div class="info-box-stats">
+                  <p style="text-align: left;">
+                    <!-- <i class="fa fa-inr" aria-hidden="true" style="font-size:26px;"></i> -->
+                    <span class="counter">{{couponsCount.inactiveCoupons}}</span>
+                  </p>
+                  <span class="info-box-title"  style="font-weight: bold; text-align: left;">Total Coupons InActive</span>
+                </div>
+                <div class="info-box-icon">
+                  <i class="fa fa-tag" style="color:#856c51;"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <div class="col-lg-4 col-md-6 animated zoomIn">
+          <div class="panel info-box panel-white">
+            <div class="panel-body" style="height: 107px;">
+              <div class="info-box-stats">
+                <p style="text-align: left;">
+                  <!-- <i class="fa fa-inr" aria-hidden="true" style="font-size:26px;"></i> -->
+                  <span class="counter" >{{couponsCount.scannedCoupons}}</span>
+                </p>
+                <span class="info-box-title"  style="font-weight: bold; text-align: left;">Total Coupons Scanned</span>
+              </div>
+              <div class="info-box-icon">
+                <i class="fa fa-tag" style="color:#856c51;"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+      <div id="main-wrapper">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel panel-white">
+              <div style="clear:both"></div>
+              <div class="panel-body">
+                   
+                  <div class="col-md-12">
+                      <form [formGroup]="couponSearch"
+                      class="form-horizontal"> 
+                    <div class="col-md-5"> 
+                      <button type="button" class="btn btn-success btn"
+                      style="background-color:#856c51;" (click)="activeCoupons()">  
+                      Activate</button>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                          <div class="col-md-8">
+                            <input formControlName="couponId" type="text" placeholder="Search coupon" autocomplete="off"
+                              class="form-control" id="input-help-block" style="margin-left: 15px;">
+                          </div>
+                          <button type="button" class="btn btn-success btn"
+                            (click)="searchCoupon(couponSearch.value)"
+                            style="background-color:#856c51 ;padding: 7px 25px;">SEARCH</button>
+                        </div>
+                      </div>
+                    <div class="col-md-2 text-right">
+                      <button type="button" class="btn btn-success btn"
+                        style="background-color:#856c51;" data-toggle="modal"
+                        data-target="#myModal1" style="background-color:#856c51;margin-right: 10px;">  
+                        Active</button>
+                      
+                      <!-- <div class="col-md-2 text-right"> -->
+                        <button type="button" class="btn btn-success btn"
+                        style="background-color:#856c51;" (click)="inActiveCoupons()">  
+                        Inactive</button>
+                    </div>
+                  </form>
+                  </div>
+                
+                    <div>&nbsp;</div>
+                  
+                <div class="table-responsive">
+                  <table id="example" class="display table" style="width: 100%;">
+                    <thead>
+                      <tr>
+                        <th class="cursor-pointer" style="background-color: #856c51;color:white;padding-left: 2%"></th>
+                        <th class="cursor-pointer" style="background-color: #856c51;color:white;padding-left: 2%">
+
+                          Coupon Code
+                        </th>
+                        <th class="cursor-pointer" style="background-color: #856c51;color:white;padding-left: 2%">
+                          Status
+
+                        </th>
+                        <th class="cursor-pointer" style="background-color: #856c51;color:white;padding-left: 2%">
+                          Mobile
+                        </th>
+                        <th class="cursor-pointer" style="background-color: #856c51;color:white;padding-left: 2%">
+                          Circle
+                        </th>
+                        <th class="cursor-pointer" style="background-color: #856c51;color:white;padding-left: 2%">
+                          Platform
+                        </th>
+                        <th class="cursor-pointer" style="background-color: #856c51;color:white;padding-left: 2%">
+                          Redemption Date
+
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr
+                        *ngFor="let x of getRedeemView  | paginate: { itemsPerPage: 10, currentPage: p, id:'id1' };let i = index">
+                        <td> <input id="{{x.couponCode}}" type="checkbox" value="{{x.couponCode}}" (change)="checkIfAllSelected(x.couponCode,$event.target.checked);">
+                        </td>
+                        <td style="padding-left: 2%">{{x.couponCode}}</td>
+                        <td style="padding-left: 2%">{{x.couponStatus}}</td>
+                        <td style="padding-left: 2%">{{x.mobile}}</td>
+                        <td style="padding-left: 2%">{{x.location}}</td>
+                        <td style="padding-left: 2%">{{x.platform}}</td>
+                        <td style="padding-left: 2%" *ngIf="x.redemptionDate != 'NA'">
+                          <!-- {{x.redemptionDate | date : 'dd/MM/yyyy'}} -->
+                          {{x.redemptionDate|date:'dd MMM yyyy h:mm a'}}</td>
+                          <td style="padding-left: 2%" *ngIf="x.redemptionDate == 'NA'">
+                            NA</td>
+                        <!-- <td style="padding-left: 2%"> <button type="button" (click)="viewRedeemOrder(x.orderId)"
+                            class="btn btn-success btn-rounded" style="margin-left: 17%; background:#856c51;">
+                            View
+                          </button></td> -->
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div *ngIf="!getRedeemView?.length" class="col-md-12 col-centered text-center">
+                    <b>No Data Found</b>
+                  </div>
+                  <pagination-controls (pageChange)="p = $event" id="id1" autoHide=true class="my-pagination">
+                  </pagination-controls>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+
+
+<!-- Popup-->
+
+<div data-keyboard="false" data-backdrop="static" class="modal fade" id="myModal1" tabindex="1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Active Coupons</h4> 
+      </div>
+      <!-- <div id="main-wrapper"> -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-white">
+            <div class="panel-body" style="padding: 10px;">
+              <form class="form-horizontal" [formGroup]="acticeCouponsForm">
+                <div class="form-group">
+                  <label for="input-help-block" class="col-sm-4 control-label">No.of Coupons
+                    <span class="error">*</span>
+                  </label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" formControlName="couponCount"  pattern="^[0-9]*$"
+                     required>
+                    <div *ngIf="acticeCouponsForm.controls['couponCount'].invalid && (acticeCouponsForm.controls['couponCount'].dirty || acticeCouponsForm.controls['couponCount'].touched)"
+                      class="alert alert-danger">
+                      <div *ngIf="acticeCouponsForm.controls['couponCount'].errors.required">
+                        No.of Coupons required.
+                      </div>
+                      <div *ngIf="acticeCouponsForm.controls['couponCount'].errors.pattern">Invalid Number</div>
+                    </div>
+                  </div>
+                </div>
+                
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- </div> -->
+      <!-- Main Wrapper -->
+      <div class="modal-footer" style="padding-top: 0px;">
+        <button type="submit" [disabled]="!acticeCouponsForm.valid" style="background:#856c51;" (click)="activatingCoupons(acticeCouponsForm.value)" data-dismiss="modal"
+        class="btn btn-success">Activate</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

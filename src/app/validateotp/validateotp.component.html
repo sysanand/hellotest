@@ -1,0 +1,40 @@
+<main class="page-content">
+
+    <!-- <ng4-loading-spinner [threshold]="2000" [timeout]="4000"  [loadingText]="'Please wait...'" [zIndex]="9999"></ng4-loading-spinner> -->
+    <div class="page-inner page-login">
+        <div id="main-wrapper">
+            <div class="row">
+                <div class="col-md-4 center" ng-show="login_status">
+                    <div class="login-box">
+                        <a class="logo-name text-lg text-center">
+                            <img style="width:180px;" src="assets/images/nikitchemlogo3.png" class=" img-responsive center" alt="">
+                        </a>
+                        <p>&nbsp;</p>
+                        <!-- <p class="text-center m-t-md">Please login into your account</p> -->
+                        <!-- <div ng-show="error" class="alert alert-danger">{{error}}</div> -->
+
+                        <form class="login-form" [formGroup]="forgotForm" (ngSubmit)="forgotpass(forgotForm.value)">
+
+                            <div class="form-group">
+                                <label>Enter your otp below to reset your password</label>
+                                <input type="text" formControlName="otp" class="form-control" placeholder="OTP" required (keypress)="numberOnly($event)">
+                            </div>
+
+                            <button [disabled]="!forgotForm.valid" class="btn btn-danger btn-block" style="background-color:#0093dd ">SUBMIT</button>
+                            <button (click)="back()" class="btn btn-danger btn-block" style="background-color:#ffffff;color:black;border-color: lightslategray ">
+                                BACK</button>
+
+                        </form>
+                        <p class="text-center m-t-xs text-sm">2019 &copy; NIKIT CHEM.</p>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Row -->
+        </div>
+        <!-- Main Wrapper -->
+    </div>
+    <!-- Page Inner -->
+
+</main>
+<!-- Page Content -->

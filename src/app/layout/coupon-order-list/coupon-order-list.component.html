@@ -1,0 +1,190 @@
+<main class="page-content content-wrap">
+  <ng4-loading-spinner [threshold]="2000" [timeout]="4000" [loadingText]="'Please wait...'" [zIndex]="9999">
+  </ng4-loading-spinner>
+  <div class="fix-header fix-sidebar">
+    <div class="page-inner">
+      <div class="page-title">
+        <h3>Coupons Order List</h3>
+        <div class="page-breadcrumb">
+          <ol class="breadcrumb">
+            <li>
+              <a routerLink="/">Dashboard</a>
+            </li>
+            <li class="active">Coupons Order List</li>
+          </ol>
+        </div>
+      </div>
+      <div id="main-wrapper">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel panel-white">
+              <div style="clear:both"></div>
+              <div class="panel-body">
+                <ul class="nav nav-tabs">
+                  <li class="active"><a data-toggle="tab" href="#home">Redeemable</a></li>
+                  <li><a data-toggle="tab" href="#menu1">Authentication</a></li>
+                </ul>
+                <div class="tab-content">
+                        <!-- <div class="form-group">
+                          <div class="col-md-10">
+                            <input formControlName="name" type="text" placeholder="Search coupon" autocomplete="off"
+                              class="form-control" id="input-help-block" style="margin-left: 15px;width: 300px;
+                              float: right;">
+                          </div>
+                          <button type="button" class="btn btn-success btn"
+                            (click)="couponsearch()"
+                            style="background-color:#856c51 ;padding: 7px 25px;margin-left: -15px;">SEARCH</button>
+                        </div> -->
+                        <form style="margin-top:30px;" [formGroup]="couponSearch"
+                         class="form-horizontal">                     
+                            <div class="row">
+                            <div class="form-group col-md-6"  style="display: flex">
+                                <div>
+                                  <input formControlName="orderId" type="text" placeholder="Order Search" autocomplete="off"
+                                    class="form-control" id="input-help-block" style="margin-left: 15px;width: 270px">
+                                </div>
+                                <button type="button" class="btn btn-success btn"
+                                  (click)="search(couponSearch.value)"
+                                  style="background-color:#856c51 ;padding: 7px 25px;">SEARCH</button>
+      
+                              </div>
+                              <div class="form-group col-md-6"  style="display: flex">
+                                  <div>
+                                    <input formControlName="couponId" type="text" placeholder="Coupon Search" autocomplete="off"
+                                      class="form-control" id="input-help-block" style="margin-left: 15px;width: 270px">
+                                  </div>
+                                  <button type="button" class="btn btn-success btn"
+                                    (click)="search(couponSearch.value)"
+                                    style="background-color:#856c51 ;padding: 7px 25px;">SEARCH</button>
+                                </div>
+      
+                        </div>
+                         
+                      </form>
+
+
+                  <div id="home" class="tab-pane fade in active">
+                    <div class="table-responsive">
+                      <table id="example" class="display table" style="width: 100%;">
+                        <thead>
+                          <tr>
+                            <th class="cursor-pointer" style="background-color: #856c51;color:white;padding-left: 2%">
+                              Order Id
+                            </th>
+                            <th class="cursor-pointer" style="background-color: #856c51;color:white;padding-left: 2%">
+                              No.of Coupons
+
+                            </th>
+                            <th class="cursor-pointer" style="background-color: #856c51;color:white;padding-left: 2%">
+                              Coupon Value
+                            </th>
+                            <th class="cursor-pointer" style="background-color: #856c51;color:white;padding-left: 2%">
+                                Active Coupons
+                              </th>
+                              <th class="cursor-pointer" style="background-color: #856c51;color:white;padding-left: 2%">
+                                  InActive Coupons
+                                </th>
+                                <th class="cursor-pointer" style="background-color: #856c51;color:white;padding-left: 2%">
+                                    Scanned Coupons
+                                  </th>
+                            <th class="cursor-pointer" style="background-color: #856c51;color:white;padding-left: 2%">
+                              Ordered Date
+                            </th>
+                            <th class="cursor-pointer" style="background-color: #856c51;color:white;padding-left: 2%">
+                              Action
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr
+                            *ngFor="let x of getRedeemlist  | paginate: { itemsPerPage: 10, currentPage: p };let i = index">
+                            <td style="padding-left: 2%">{{x.orderId}}</td>
+                            <td style="padding-left: 2%">{{x.NoOfCoupons}}</td>
+                            <td style="padding-left: 2%">{{x.denomination}}</td>
+                            <td style="padding-left: 2%">{{x.activeCoupons}}</td>
+                            <td style="padding-left: 2%">{{x.inactiveCoupons}}</td>
+                            <td style="padding-left: 2%">{{x.scannedCoupons}}</td>
+                            <td style="padding-left: 2%">{{x.orderedDate | date : 'dd MMM yyyy h:mm a'}}</td>
+                            <td style="padding-left: 2%"> <button type="button" (click)="viewRedeemOrder(x.orderId)"
+                                class="btn btn-success btn-rounded" style="margin-left: 17%; background:#856c51;">
+                                View
+                              </button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div *ngIf="! getRedeemlist?.length" class="col-md-12 col-centered text-center">
+                        <b>No Data Found</b>
+                      </div>
+                      <!-- <pagination-controls (pageChange)="p = $event" id="id1" autoHide=true class="my-pagination">
+                      </pagination-controls> -->
+                      <pagination-controls (pageChange)="p = $event" autoHide=true class="my-pagination">
+                      </pagination-controls>
+                    </div>
+                  </div>
+                  <div id="menu1" class="tab-pane fade">
+
+                    <div class="table-responsive">
+                      <table id="example" class="display table" style="width: 100%;">
+                        <thead>
+                          <tr>
+                            <th class="cursor-pointer" style="background-color: #856c51;color:white;padding-left: 2%">
+                              Order Id
+                            </th>
+                            <th class="cursor-pointer" style="background-color: #856c51;color:white;padding-left: 2%">
+                              No.of Coupons
+
+                            </th>
+                            <th class="cursor-pointer" style="background-color: #856c51;color:white;padding-left: 2%">
+                                Active Coupons
+  
+                              </th>
+                              <th class="cursor-pointer" style="background-color: #856c51;color:white;padding-left: 2%">
+                                  InActive Coupons
+    
+                                </th>
+                                <th class="cursor-pointer" style="background-color: #856c51;color:white;padding-left: 2%">
+                                    Scanned Coupons
+      
+                                  </th>
+                            <th class="cursor-pointer" style="background-color: #856c51;color:white;padding-left: 2%">
+                              Ordered Date
+                            </th>
+                            <th class="cursor-pointer" style="background-color: #856c51;color:white;padding-left: 2%">
+                              Action
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr
+                            *ngFor="let x of getAuthenticationlist  | paginate: { itemsPerPage: 10, currentPage: q, id:'id1' };let i = index">
+                            <td style="padding-left: 2%">{{x.orderId}}</td>
+                            <td style="padding-left: 2%">{{x.NoOfCoupons}}</td>
+                            <td style="padding-left: 2%">{{x.activeCoupons}}</td>
+                            <td style="padding-left: 2%">{{x.inactiveCoupons}}</td>
+                            <td style="padding-left: 2%">{{x.scannedCoupons}}</td>
+                            <td style="padding-left: 2%">{{x.orderedDate | date : 'dd/MM/yyyy'}} {{x.orderedDate|date:'shortTime'}}</td>
+                            <td style="padding-left: 2%"> <button type="button" (click)="viewAuthenticationOrder(x.orderId)"
+                                class="btn btn-success btn-rounded" style="margin-left: 17%; background:#856c51;">
+                                View
+                              </button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div *ngIf="! getAuthenticationlist?.length" class="col-md-12 col-centered text-center">
+                        <b>No Data Found</b>
+                      </div>
+                      <pagination-controls (pageChange)="q = $event" id="id2" autoHide=true class="my-pagination">
+                      </pagination-controls>
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

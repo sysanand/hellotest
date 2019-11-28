@@ -1,0 +1,248 @@
+<main class="page-content content-wrap">
+  <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  <style>
+    .animated {
+      animation-duration: 1s;
+      animation-fill-mode: none !important;
+    }
+  </style>
+  <ng4-loading-spinner [threshold]="2000" [timeout]="4000" [loadingText]="'Please wait...'" [zIndex]="9999">
+  </ng4-loading-spinner>
+  <!-- <div ng-include="'app/common/header.html'"></div> -->
+  <!-- <div ng-include="'app/common/sideBar.html'"></div> -->
+  <form [formGroup]="dashboardForm">
+    <div class="fix-header fix-sidebar">
+      <div class="page-inner">
+        <div class="page-title">
+          <h3>Dashboard</h3>
+        </div>
+        <div id="main-wrapper" align="center">
+          <div class="row">
+            <div class="col-lg-4 col-md-6 fade-element-in animated zoomIn" >
+              <div class="panel info-box panel-white">
+                <div class="panel-body" style="height: 107px;cursor: pointer;" routerLink="/consumers-list">
+                  <div class="info-box-stats">
+                    <p style="text-align: left;">
+                      <span class="counter"  *ngIf="DashboardData">{{DashboardData.totalRegisteredConsumer}}</span>
+                    </p>
+                    <span class="info-box-title"  style="font-weight: bold; text-align: left;">Total Registered Customers</span>
+                  </div>
+                  <div class="info-box-icon">
+                    <i class="icon-users" style="color:#856c51;"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 animated zoomIn">
+                <div class="panel info-box panel-white">
+                  <div class="panel-body" style="height: 107px;cursor: pointer;" routerLink="/consumer-referral-report">
+                    <div class="info-box-stats">
+                      <p style="text-align: left;">
+                        <!-- <i class="fa fa-inr" aria-hidden="true" style="font-size:26px;"></i> -->
+                        <span class="counter" *ngIf="DashboardData">{{DashboardData.totalConsumersthroughreferral}}</span>
+                      </p>
+                      <span class="info-box-title"  style="font-weight: bold; text-align: left;">Total Consumer Through Referral</span>
+                    </div>
+                    <div class="info-box-icon">
+                      <i class="icon-users" style="color:#856c51;"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            <div class="col-lg-4 col-md-6 animated zoomIn">
+              <div class="panel info-box panel-white">
+                <div class="panel-body" style="height: 107px;cursor: pointer;" routerLink="/consumer-wallet-balance-report" >
+                  <div class="info-box-stats">
+                    <p style="text-align: left;">
+                      <!-- <i class="fa fa-inr" aria-hidden="true" style="font-size:26px;"></i> -->
+                      <span class="counter" *ngIf="DashboardData">{{DashboardData.consumerWalletBalance | currency: 'INR':'symbol':'1.0-0'}}</span>
+                    </p>
+                    <span class="info-box-title"  style="font-weight: bold; text-align: left;">Consumer Wallet Balance</span>
+                  </div>
+                  <div class="info-box-icon">
+                    <img src="assets/images/wallet-nikit.png" alt="" height="30" width="30">
+                    <!-- <img src="assets/images/wallet-niki.png" alt=""> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-4 col-md-6 animated zoomIn">
+                <div class="panel info-box panel-white">
+                  <div class="panel-body" style="height: 107px;cursor: pointer;" routerLink="/manage-payment">
+                    <div class="info-box-stats">
+                      <p style="text-align: left;">
+                        <!-- <i class="fa fa-inr" aria-hidden="true" style="font-size:26px;"></i> -->
+                        <span class="counter" *ngIf="DashboardData">{{DashboardData.paymentReceived | currency: 'INR':'symbol':'1.0-0'}}</span>
+                      </p>
+                      <span class="info-box-title"  style="font-weight: bold; text-align: left;">Total Payment Received</span>
+                    </div>
+                    <div class="info-box-icon">
+                      <i class="fa fa-money" style="color:#856c51;"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            <div class="col-lg-4 col-md-6 animated zoomIn">
+              <div class="panel info-box panel-white">
+                <div class="panel-body" style="height: 107px;cursor:pointer" routerLink="/coupon-usage-report">
+                  <div class="info-box-stats">
+                      <p style="text-align: left;">
+                          <!-- <i class="fa fa-inr" aria-hidden="true" style="font-size:26px;"></i> -->
+                          <span class="counter" *ngIf="DashboardData">{{DashboardData.scannedcouponamount | currency: 'INR':'symbol':'1.0-0'}}</span>
+                        </p>               
+                    <span class="info-box-title"  style="font-weight: bold; text-align: left;">Scanned Coupon Amount</span>
+                  </div>
+                  
+                  <div class="info-box-icon">
+                    <img src="assets/images/qr-code-niki.png" alt="" height="30" width="30">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 animated zoomIn">
+                <div class="panel info-box panel-white">
+                  <div class="panel-body" style="height: 107px;cursor: pointer;" routerLink="/redeemed-amount">
+                    <div class="info-box-stats">
+                      <p style="text-align: left;">
+                        <!-- <i class="fa fa-inr" aria-hidden="true" style="font-size:26px;"></i> -->
+                        <span class="counter" *ngIf="DashboardData">{{DashboardData.redeemedamount | currency: 'INR':'symbol':'1.0-0'}}</span>
+                      </p>
+                      <span class="info-box-title"  style="font-weight: bold; text-align: left;">Redeemed Amount</span>
+                    </div>
+                    <div class="info-box-icon">
+                      <i class="fa fa-money" style="color:#856c51;"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <!-- Row -->
+
+          <div class="row">
+
+            <div class="col-lg-4 col-md-6 animated zoomIn">
+                <div class="panel info-box panel-white">
+                  <div class="panel-body" style="height: 107px;cursor: pointer;" routerLink="/virtual-wallet-balance" >
+                    <div class="info-box-stats">
+                      <p style="text-align: left;">
+                        <!-- <i class="fa fa-inr" aria-hidden="true" style="font-size:26px;"></i> -->
+                        <span class="counter" *ngIf="DashboardData">{{DashboardData.virtualBalance | currency: 'INR':'symbol':'1.0-0'}}</span>
+                      </p>
+                      <span class="info-box-title" style="font-weight: bold; text-align: left;">Virtual Wallet Balance</span>
+                    </div>
+                    <div class="info-box-icon">
+                      <img src="assets/images/wallet-nikit.png" alt="" height="30" width="30">
+                      <!-- <img src="assets/images/wallet-niki.png" alt=""> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            <div class="col-lg-4 col-md-6 animated zoomIn">
+                <div class="panel info-box panel-white">
+                  <div class="panel-body" style="height: 107px;cursor: pointer;" routerLink="/clear-wallet-balance">
+                    <div class="info-box-stats">
+                      <p style="text-align: left;">
+                        <!-- <i class="fa fa-inr" aria-hidden="true" style="font-size:26px;"></i> -->
+                        <span class="counter" *ngIf="DashboardData">{{DashboardData.clearBalance | currency: 'INR':'symbol':'1.0-0'}}</span>
+                      </p>
+                      <span class="info-box-title"  style="font-weight: bold; text-align: left;">Clear Wallet Balance</span>
+                    </div>
+                    <div class="info-box-icon">
+                      <img src="assets/images/wallet-nikit.png" alt="" height="30" width="30">
+                      <!-- <img src="assets/images/wallet-niki.png" alt=""> -->
+  
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            <div class="col-lg-4 col-md-6 fade-element-in animated zoomIn">
+                <div class="panel info-box panel-white">
+                  <div class="panel-body" style="height: 107px;cursor: pointer;" routerLink="/highest-referral">
+                    <div class="info-box-stats">
+                      <p style="text-align: left;">
+                        <!-- <span class="counter" *ngIf="DashboardData">{{DashboardData.totalConsumer}}</span> -->
+                      </p>
+                      <span class="info-box-title"  style="font-weight: bold; text-align: left;">Highest Referral Person</span>
+                    </div>
+                    <div class="info-box-icon">
+                      <i class="icon-users" style="color:#856c51;"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="row">
+
+              <div class="col-lg-4 col-md-6 animated zoomIn">
+              <div class="panel info-box panel-white">
+                <div class="panel-body" style="height: 107px;cursor: pointer;" routerLink="/amount-awarded-through-referral">
+                  <div class="info-box-stats">
+                    <p style="text-align: left;">
+                      <!-- <i class="fa fa-inr" aria-hidden="true" style="font-size:26px;"></i> -->
+                      <span class="counter" *ngIf="DashboardData">{{DashboardData.amountAwardedThroughReferral | currency: 'INR':'symbol':'1.0-0'}}</span>
+                    </p>
+                    <span class="info-box-title"  style="font-weight: bold; text-align: left;">Amount awarded through referral</span>
+                  </div>
+                  <div class="info-box-icon">
+                    <i class="fa fa-money" style="color:#856c51;"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+              
+              <div class="col-lg-4 col-md-6 animated zoomIn">
+              <div class="panel info-box panel-white">
+                <div class="panel-body" style="height: 107px;cursor: pointer;" routerLink="/referral-points-redemption-report"> 
+                  <div class="info-box-stats">
+                    <p style="text-align: left;">
+                      <!-- <i class="fa fa-inr" aria-hidden="true" style="font-size:26px;"></i> -->
+                      <span class="counter" *ngIf="DashboardData">{{DashboardData.redemptionAmountForReferral | currency: 'INR':'symbol':'1.0-0'}}</span>
+                    </p>
+                    <span class="info-box-title" style="font-weight: bold; text-align: left;">Redemption amount through referral</span>
+                  </div>
+                  <div class="info-box-icon">
+                    <i class="fa fa-money" style="color:#856c51;"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6 animated zoomIn"> 
+              <div class="panel info-box panel-white">
+                <div class="panel-body" style="height: 107px;cursor: pointer;" routerLink="/blocked-amount">
+                  <div class="info-box-stats">
+                    <p style="text-align: left;">
+                      <!-- <i class="fa fa-inr" aria-hidden="true" style="font-size:26px;"></i> -->
+                      <span class="counter" *ngIf="DashboardData">{{DashboardData.blockedAmount | currency: 'INR':'symbol':'1.0-0'}}</span>
+                    </p>
+                    <span class="info-box-title"  style="font-weight: bold; text-align: left;">Blocked Amount</span>
+                  </div>
+                  <div class="info-box-icon">
+                    <i class="fa fa-money" style="color:#856c51;"></i>     
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+
+          <!-- Row -->
+        </div>
+      </div>
+      <div ng-include="'app/common/footer.html'"></div>
+    </div>
+  </form>
+</main>
+<!-- Page Content downlod_popup  -->

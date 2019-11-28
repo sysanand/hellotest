@@ -1,0 +1,91 @@
+<main class="page-content">
+
+    <!-- <ng4-loading-spinner [threshold]="2000" [timeout]="4000"  [loadingText]="'Please wait...'" [zIndex]="9999"></ng4-loading-spinner> -->
+    <div class="page-inner page-login">
+        <div id="main-wrapper">
+            <div class="row">
+                <div class="col-md-4 center" ng-show="login_status">
+                    <div class="login-box">
+                        <a class="logo-name text-lg text-center">
+                            <img src="assets/images/nikitchemlogo3.png" style="width:100px;" class=" img-responsive center" alt="gfd">
+                        </a>
+                        <p>&nbsp;</p>
+                        <!-- <p class="text-center m-t-md">Please login into your account</p> -->
+                        <!-- <div ng-show="error" class="alert alert-danger">{{error}}</div> -->
+
+                        <form class="login-form" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+
+                            <div class="form-group">
+                                <!-- <label>Username</label> -->
+                                <input type="text" formControlName="user_name" class="form-control" placeholder="User Id" type="text" required (keydown)="$event.keyCode != 32 ? $event:$event.preventDefault()">
+                                <!-- <span ngif="loginForm.username.$dirty && loginForm.username.$error.required" class="help-block error">User Id is required</span> -->
+                                <!-- <input class="form-control" name="username" ng-model="vm.username" limit-to="25" id="fname" placeholder="User Id"  type="text" required /> -->
+                            </div>
+                            <div class="form-group">
+                                <!-- <label>Password</label> -->
+                                <!-- <input type="password" class="form-control" formControlName="password" placeholder="Password"> -->
+                                <input type="password" autocomplete="password" formControlName="password" placeholder="Password" class="form-control" required
+                                    (keydown)="$event.keyCode != 32 ? $event:$event.preventDefault()" />
+                                <!-- <span ngif="loginForm.password.$dirty && loginForm.password.$error.required" class="help-block error">Password is required</span> -->
+                            </div>
+                            <div class="checkbox">
+
+                                <label class="pull-right">
+                                    <a routerLink="/forgotpassword">Forgot Password?</a>
+                                </label>
+
+                            </div>
+                            <!-- <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Sign in</button> -->
+
+                            <button type="submit" [disabled]="!loginForm.valid" class="btn btn-danger btn-block" style="background-color:#856c51 ">Login</button>
+
+                            <!-- <div class="form-group">
+                        <input class="form-control" name="username" ng-model="vm.username" limit-to="25" id="fname" placeholder="User Id"  type="text" required />
+    <span ng-show="loginForm.username.$dirty && loginForm.username.$error.required" class="help-block error">User Id is required</span>
+                    </div>
+                    <div class="form-group">
+                            <input type="password"  name="password" ng-model="vm.password" placeholder="Password"  class="form-control" required />
+      <span ng-show="loginForm.password.$dirty && loginForm.password.$error.required" class="help-block error">Password is required</span>
+                    </div>
+  <button   ng-disabled="loginForm.$invalid || dataLoading" class="btn btn-danger btn-block">Login</button> -->
+                            <!--  <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/> -->
+                            <!-- <a ui-sref="forgotpwd" class="display-block text-center m-t-md text-sm">Forgot Password?</a> -->
+                            <!--  <p class="text-center m-t-xs text-sm">Do not have an account?</p> -->
+                            <!--  <a href="register.html" class="btn btn-default btn-block m-t-md">Create an account</a> -->
+                            <!-- <div *ngIf="message" class="alert alert-danger">
+               
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                        This is an alert box.
+                      
+             </div> -->
+                        </form>
+                        <p class="text-center m-t-xs text-sm">2019 &copy; NIKIT CHEM.</p>
+                    </div>
+                </div>
+                <!-- <div class="col-md-3 center" ng-show="change_pwd_status">
+            <div class="login-box">
+                <a href="#" class="logo-name text-lg text-center"><img style="width: 100px; margin-left: 30%;" src="app/assets/images/uniplyImages/uniplyLogo.png" class="img-circle img-responsive" alt=""></a>
+                <p class="text-center m-t-md">Change Password.</p>
+                <form class="login-form" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+                    <div class="form-group">
+                        <input type="password" ng-model="pwd.newpwd" class="form-control" value="" placeholder="New Password" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password"  ng-model="pwd.confirm"  class="form-control" value="" placeholder="Confirm Password" required>
+                    </div>
+                    <a ng-click="changepwd(pwd)" class="btn btn-success btn-block">Submit</a>
+                 
+                  
+                </form>
+                <p class="text-center m-t-xs text-sm">2018 &copy; Uniply.</p>
+            </div>
+        </div> -->
+            </div>
+            <!-- Row -->
+        </div>
+        <!-- Main Wrapper -->
+    </div>
+    <!-- Page Inner -->
+
+</main>
+<!-- Page Content -->

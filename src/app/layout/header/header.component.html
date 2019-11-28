@@ -1,0 +1,188 @@
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="sidebar-pusher">
+            <a href="javascript:void(0);" class="waves-effect waves-button waves-classic push-sidebar">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+
+        <div class="logo-box" style="background-color:#fff;width: 100px;">
+
+            <a>
+                <img style="width:115px; height:60px; object-fit: contain;" src="assets/images/nikitchemlogo3.png" />
+            </a>
+        </div>
+        <!-- Logo Box -->
+        <div class="topmenu-outer">
+            <div class="top-menu">
+                <ul class="nav navbar-nav navbar-left">
+                    <p style="font-family: Cinzel;font-size: 20px;margin-top: 15px;
+                        margin-left: -43px;">Nikit Chem</p>
+                    <!-- <li class="dropdown">
+
+                        <a class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown">
+
+                            <img src="assets/images/menu-nik.png" style="width:24px;" alt="">
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-list" role="menu">
+                            <li role="presentation">
+                                <a routerLink="/">
+                                    <i class="menu-icon glyphicon glyphicon-stats"
+                                        style="font-size: 20px"></i>dashboard</a>
+                            </li>
+                            <li role="presentation">
+                                <a routerLink="/consumers-list">
+                                    <i class="menu-icon glyphicon glyphicon-stats"
+                                        style="font-size: 20px"></i>Consumers</a>
+                            </li>
+                            <li role="presentation">
+                                <a routerLink="/gps-location-report">
+                                    <i class="menu-icon glyphicon glyphicon-stats" style="font-size: 20px"></i>GPS
+                                    Location Report</a>
+                            </li>
+                            <li role="presentation">
+                                <a routerLink="/customer-wallet-balance-report">
+                                    <i class="menu-icon glyphicon glyphicon-stats" style="font-size: 20px"></i>Customer
+                                    Wallet Balance Report</a>
+                            </li>
+                            <li role="presentation">
+                                <a routerLink="/customer-wallet-usage-report">
+                                    <i class="menu-icon glyphicon glyphicon-stats" style="font-size: 20px"></i>Customer
+                                    Wallet Usage Report</a>
+                            </li>
+
+
+                        </ul>
+                    </li> -->
+
+                    <li style="display:none;">
+                        <a href="javascript:void(0);" class="waves-effect waves-button waves-classic" id="showRight">
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown">
+                            <img src="assets/images/nikit/report.png" style="width:24px;" alt="">
+                        </a>
+                        <ul class="dropdown-menu dropdown-list" role="menu">
+                            <!-- <li role="presentation">
+                                <a routerLink="/coupon-usage-report">
+                                    <i class="menu-icon glyphicon glyphicon-stats" style="font-size: 20px"></i>
+                                    Coupon Usage Report</a>
+                            </li> -->
+                            <li role="presentation">
+                                <a routerLink="/consumers-redemption-report">
+                                    <i class="menu-icon glyphicon glyphicon-stats" style="font-size: 20px"></i>
+                                    Consumers Redemption Report</a>
+                            </li>
+                            <!-- <li role="presentation">
+                                <a routerLink="/coupon-redemption-report">
+                                    <i class="menu-icon glyphicon glyphicon-stats" style="font-size: 20px"></i>
+                                    Coupon Redemption Report</a>
+                            </li> -->
+                            <!-- <li role="presentation">
+                                <a routerLink="/consumer-referral-report">
+                                    <i class="menu-icon glyphicon glyphicon-stats" style="font-size: 20px"></i>
+                                    Consumer Referral Report</a>
+                            </li> -->
+                            <!-- <li role="presentation">
+                                <a routerLink="/referral-points-redemption-report">
+                                    <i class="menu-icon glyphicon glyphicon-stats" style="font-size: 20px"></i>
+                                    Referral Points Redemption Report</a>
+                            </li> -->
+                            <li role="presentation">
+                                <a routerLink="/referral-points-usage-report">
+                                    <i class="menu-icon glyphicon glyphicon-stats" style="font-size: 20px"></i>
+                                    Referral Points Usage Report</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+
+                        <a class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown">
+
+                            <img src="assets/images/niki-new.png" style="width:24px;" alt="">
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-list" role="menu">
+                            <li role="presentation">
+                                <a routerLink="/">
+                                    <i class="menu-icon glyphicon glyphicon-stats"
+                                        style="font-size: 20px"></i>Dashboard</a>
+                            </li>
+                            <!-- <li role="presentation">
+                                <a routerLink="/consumers-list">
+                                    <i class="menu-icon glyphicon glyphicon-stats" style="font-size: 20px"></i>Manage
+                                    Consumers</a>
+                            </li> -->
+                            <li role="presentation">
+                                <a routerLink="/coupon-order-list">
+                                    <i class="menu-icon glyphicon glyphicon-stats" style="font-size: 20px"></i>
+                                    Coupon Order List</a>
+                            </li>
+                            <li role="presentation">
+                                    <a routerLink="/config-settings">
+                                        <i class="menu-icon glyphicon glyphicon-stats" style="font-size: 20px"></i>
+                                        Config Settings</a>
+                                </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown">
+                            <span class="user-name">{{name}}
+                                <i class="fa fa-angle-down"></i>
+                            </span>
+                            <img class="img-circle avatar" src="assets/images/avatar1.png" width="40" height="40"
+                                alt="">
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-list" role="menu">
+                            <li role="presentation">
+                                <a routerLink="/changepassword">
+                                    <i class="fa fa-user"></i>Profile</a>
+                            </li>
+                            <li role="presentation">
+                                <a (click)="logout()">
+                                    <i class="fa fa-sign-out m-r-xs"></i>Log out</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li style="display:none;">
+                        <a href="javascript:void(0);" class="waves-effect waves-button waves-classic" id="showRight">
+
+                        </a>
+                    </li>
+                </ul>
+                <!-- Nav -->
+            </div>
+            <!-- Top Menu -->
+        </div>
+    </div>
+</div>
+
+<!-- <app-alerts></app-alerts> -->
+<!-- Navbar -->
+<!-- <div class="responsive">
+  <div class="page-sidebar">
+      <div class="page-sidebar-inner slimscroll">
+          <ul class="menu accordion-menu">
+               <li *ngFor="let y of menuIcons">
+                  <a routerLink="{{y.url}}" class="waves-effect waves-button">
+                      <span class="{{y.icon}}" style="font-size:25px"></span>
+                      <p value="y.menuId">{{y.menu}}</p>
+
+                  </a>
+              </li> 
+          </ul>
+      </div>
+      
+  </div>
+  
+</div> -->
+<div class="page-footer topmenu-outer">
+    <p class="no-s">2019 &copy; NIKIT CHEM.</p>
+</div>

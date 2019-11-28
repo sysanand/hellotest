@@ -1,0 +1,163 @@
+<main class="page-content content-wrap">
+    <ng4-loading-spinner [threshold]="2000" [timeout]="4000" [loadingText]="'Please wait...'" [zIndex]="9999">
+    </ng4-loading-spinner>
+    <div class="fix-header fix-sidebar">
+      <div class="page-inner">
+        <div class="page-title">
+          <h3>Consumer Wallet Balance</h3>
+          <div class="page-breadcrumb">
+            <ol class="breadcrumb">
+              <li>
+                <a routerLink="/">Dashboard</a>
+              </li>
+              <li class="active">Consumer Wallet Balance</li>
+            </ol>
+          </div>
+        </div>
+        <div id="main-wrapper">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel">
+                <div class="panel-body" style="margin-top:1.5px;">
+                  <form style="margin-top:30px;" [formGroup]="consumerwalletbalanceForm"
+                    (ngSubmit)="consumerwalletBalanceList(consumerwalletbalanceForm.value,0)" class="form-horizontal">
+                    <h4 style="margin-left: 15px">Consumer Wallet Balance &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{consumerWalletamount | currency: 'INR':'symbol':'1.0-0'}}</h4>
+                    <br>
+                    <div class="row">
+                      <div class="col-md-4" style="margin-left: -30px;">
+                        <div class="form-group">
+                          <label class="col-sm-4 control-label" style="margin-top: 5px;">From
+                            Date</label>
+                          <!-- <span class="error col-sm-1" style="padding: 0px;"></span> -->
+                          <div class="col-sm-7">
+                            <!-- <input type="date" formControlName="fromDate" class="form-control" placeholder="YYYY-MM-DD"
+                              pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"> -->
+                              <input class="form-control" placeholder="DD/MM/YYYY" [bsConfig]="datepickerConfig" formControlName="fromDate" bsDatepicker>
+                            </div>
+                        </div>
+                      </div> 
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="col-sm-4 control-label" style="text-align:right;margin-top: 5px;">To
+                            Date</label>
+                          <!-- <span class="error col-sm-1" style="padding: 0px;"></span> -->
+                          <div class="col-sm-7">
+                            <!-- <input type="date" formControlName="toDate" placeholder="YYYY-MM-DD" class="form-control"
+                              pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"> -->
+                              <input class="form-control"   placeholder="DD/MM/YYYY" [bsConfig]="datepickerConfig" formControlName="toDate" bsDatepicker>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-4">
+                        <button type="submit" [disabled]="!consumerwalletbalanceForm.valid" style="background:#856c51;"
+                          class="btn btn-success btn-rounded">
+                          <i class="fa fa-eye" aria-hidden="true"></i>View
+                        </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  
+                        <button type="button" [disabled]="!consumerwalletbalanceForm.valid"
+                          (click)="exportToExcel(consumerwalletbalanceForm.value)" class="btn btn-success btn"
+                          style="background-color:#856c51">
+                          <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                          Export</button>
+                      </div>
+  
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <!-- <label class="col-sm-4 control-label" style="text-align:right;">Mobile</label> -->
+                          <div class="col-md-6">
+                            <input formControlName="mobile" type="text" placeholder="Mobile Number"
+                              (keypress)="keyPress($event)" autocomplete="off" minlength=10 maxlength=10
+                              class="form-control" id="input-help-block" style="margin-left: 15px">
+                          </div>
+                          <button type="button" class="btn btn-success btn" (click)="consumerwalletBalanceList(consumerwalletbalanceForm.value,0)"
+                            style="background-color:#000000;padding: 7px 25px;">SEARCH</button>
+                        </div>
+                      </div>
+  
+                      <div class="col-md-6" style="margin-left: -190px"> 
+                        <div class="form-group">
+                          <!-- <label class="col-sm-4 control-label" style="text-align:right;">Mobile</label> -->
+                          <div class="col-md-6">
+                            <input formControlName="consumerName" placeholder="Consumer Name" type="text"
+                              autocomplete="off" class="form-control" id="input-help-block" style="margin-left: 15px">
+                          </div>
+                          <button type="button" class="btn btn-success btn" (click)="consumerwalletBalanceList(consumerwalletbalanceForm.value,0)"
+                            style="background-color:#000000;padding: 7px 25px;">SEARCH</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Row -->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel panel-white">               
+                <div style="clear:both"></div>
+                <div class="panel-body">
+                  <div class="table-responsive">
+                    <table id="example" class="display table" style="width: 100%;">
+                      <thead>
+                        <tr>  
+                          <th style="background-color: #856c51;color:white;padding-left: 2%">
+                            Consumer Name
+                          </th>
+                          <th  style="background-color: #856c51;color:white;padding-left: 2%">
+                            Mobile 
+                          </th>
+                          <th  style="background-color: #856c51;color:white;padding-left: 2%">
+                            Email 
+                          </th>
+                          <th  style="background-color: #856c51;color:white;padding-left: 2%">
+                            Blocked Amount
+                          </th>
+                          <th  style="background-color: #856c51;color:white;padding-left: 2%">
+                            Wallet Balance
+                          </th>
+                          <th  style="background-color: #856c51;color:white;padding-left: 2%">
+                            Created Date
+                          </th>
+                          <!-- <th class="cursor-pointer" style="background-color: #856c51;color:white;padding-left: 2%">
+                            Referred by with mobile
+  
+                          </th> -->
+  
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          *ngFor="let x of consumerWalletBalanceListData  | paginate: { itemsPerPage: 10, currentPage: p,totalItems:countItems };let i = index">
+                          
+                          <td style="padding-left: 2%">{{x.userName}}</td>
+                          <td style="padding-left: 2%">{{x.mobile}}</td>
+                          <td style="padding-left: 2%">{{x.email}}</td>
+                          <td style="padding-left: 2%">{{x.blockedAmount}}</td>
+                          <td style="padding-left: 2%">{{x.walletBalance}}</td>
+                          <td style="padding-left: 2%">{{x.createdTime | date:'dd MMM yyyy h:mm a'}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+  
+                    <div *ngIf="! consumerWalletBalanceListData?.length" class="col-md-12 col-centered text-center">
+                      <b>No Data Found</b>
+                    </div>
+                    <pagination-controls (pageChange)="p = $event"
+                    (click)="consumerwalletBalanceList(consumerwalletbalanceForm.value,p)" class="my-pagination">
+                  </pagination-controls>             
+                  <!-- <pagination-controls (pageChange)="p = $event;onPaginateChange($event,consumerwalletbalanceForm.value,p)"
+                    class="my-pagination">
+                  </pagination-controls> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>

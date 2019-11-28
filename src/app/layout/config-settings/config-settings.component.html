@@ -1,0 +1,75 @@
+<main class="page-content content-wrap">
+  <!-- <ng4-loading-spinner [threshold]="2000" [timeout]="4000" [loadingText]="'Please wait...'" [zIndex]="9999">
+  </ng4-loading-spinner> -->
+  <div class="fix-header fix-sidebar">
+    <div class="page-inner">
+      <div class="page-title">
+        <h3>Config Settings</h3>
+        <div class="page-breadcrumb">
+          <ol class="breadcrumb">
+            <li>
+              <a routerLink="/">Dashboard</a>
+            </li>
+            <li class="active">Config Settings</li>
+          </ol>
+        </div>
+      </div>
+      <div id="main-wrapper">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel panel-white">
+              <div style="clear:both"></div>
+              <div class="panel-body">
+
+                <form style="margin-top:30px;" [formGroup]="configForm"
+                  (ngSubmit)="updateConfig(configForm.value)" class="form-horizontal">
+
+                  <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-8">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">First Time Min Redemption Threshold</label>
+                        <div class="col-sm-7" style="float: right;">
+                          <input type="text" formControlName="minThreshold" (keypress)="keyPress($event)" autocomplete="off" minlength=1 maxlength=20
+                            class="form-control" id="input-help-block">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-8">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Max Redemption threshold Per Month</label>
+                        <div class="col-sm-7" style="float: right;">
+                          <input type="text" formControlName="maxThreshold" (keypress)="keyPress($event)" autocomplete="off" minlength=1 maxlength=20
+                            class="form-control" id="input-help-block">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-8">
+                      <div class="form-group text-center">
+                        <div class="col-sm-7" style="float: right;">
+                          <button type="submit" [disabled]="!configForm.valid" style="background:#856c51;"
+                            class="btn btn-success btn-rounded">
+                            Update
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,79 @@
+<main class="page-content content-wrap">
+  <!-- <ng4-loading-spinner [threshold]="2000" [timeout]="4000" [loadingText]="'Please wait...'" [zIndex]="9999">
+  </ng4-loading-spinner> -->
+  <div class="fix-header fix-sidebar">
+    <div class="page-inner">
+      <div class="page-title">
+        <h3>View Track Usage </h3>
+        <div class="page-breadcrumb">
+          <ol class="breadcrumb">
+            <li>
+              <a routerLink="/">Dashboard</a>
+            </li>
+            <li>
+              <a routerLink="/coupon-order-list">Coupon Orders</a>
+            </li>
+            <li>
+              <a routerLink="/coupon-authentication-order-view">View Authentication Coupons</a>
+            </li>
+            <li class="active">View Track Usage</li>
+          </ol>
+        </div>
+      </div>
+      <div id="main-wrapper">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel panel-white">
+              <div style="clear:both"></div>
+              <div class="panel-body">
+        
+                <div class="table-responsive">
+                  <table id="example" class="display table" style="width: 100%;">
+                    <thead>
+                      <tr>
+                       
+                        <th class="cursor-pointer" style="background-color: #856c51;color:white;padding-left: 2%">
+
+                          Mobile
+                        </th>
+                        <th class="cursor-pointer" style="background-color: #856c51;color:white;padding-left: 2%">
+                          State
+                        </th>
+                        <th class="cursor-pointer" style="background-color: #856c51;color:white;padding-left: 2%">
+                          Platform
+                        </th>
+                        <th class="cursor-pointer" style="background-color: #856c51;color:white;padding-left: 2%">
+                          Status
+                        </th>
+                        <th class="cursor-pointer" style="background-color: #856c51;color:white;padding-left: 2%">
+                          Used Date
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr
+                        *ngFor="let x of getTrackUsageView  | paginate: { itemsPerPage: 10, currentPage: p, id:'id1' };let i = index">
+                  
+                        <td style="padding-left: 2%">{{x.mobile}}</td>
+                        <td style="padding-left: 2%">{{x.city}}</td>
+                        <td style="padding-left: 2%">{{x.platform}}</td>
+                        <td style="padding-left: 2%">{{x.status}}</td>
+                        <td style="padding-left: 2%">{{x.usedDate | date : 'dd/MM/yyyy'}} {{x.usedDate|date:'shortTime'}}</td>
+
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div *ngIf="! getTrackUsageView?.length" class="col-md-12 col-centered text-center">
+                    <b>No Data Found</b>
+                  </div>
+                  <pagination-controls (pageChange)="p = $event" id="id1" autoHide=true class="my-pagination">
+                  </pagination-controls>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

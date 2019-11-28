@@ -1,0 +1,207 @@
+<main class="page-content content-wrap">
+    <ng4-loading-spinner [threshold]="2000" [timeout]="4000" [loadingText]="'Please wait...'" [zIndex]="9999">
+    </ng4-loading-spinner>
+    <div class="fix-header fix-sidebar">
+      <div class="page-inner">
+        <div class="page-title">
+          <h3>Amount Awarded Through Referral</h3>
+          <div class="page-breadcrumb">
+            <ol class="breadcrumb">
+              <li>
+                <a routerLink="/">Dashboard</a>
+              </li>
+              <li class="active">Amount Awarded Through Referral</li>
+            </ol>
+          </div>
+        </div>
+        <div id="main-wrapper">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel">
+                <div class="panel-body" style="margin-top:1.5px;">
+                  <h4>Amount Awarded Through Referral &nbsp;&nbsp;&nbsp;&nbsp;{{totalamountAwardedThroughRefferal | currency: 'INR':'symbol':'1.0-0'}}</h4>
+                  <form style="margin-top:30px;" [formGroup]="amountawardedreferralForm"
+                    (ngSubmit)="amountawardedList(amountawardedreferralForm.value,0)" class="form-horizontal">
+                    <div class="row">
+                     
+                      <div class="col-md-4" style="margin-left: -28px;">
+                        <div class="form-group">
+                          <label class="col-sm-4 control-label" style="text-align:right;">From Date</label>
+                          <span class="error col-sm-1" style="padding: 0px;"></span>
+                          <div class="col-sm-7">
+                            <!-- <input type="date" formControlName="fromDate" class="form-control" placeholder="YYYY-MM-DD"
+                              pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"> -->
+                              <input class="form-control" placeholder="DD/MM/YYYY" [bsConfig]="datepickerConfig" formControlName="fromDate" bsDatepicker>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="col-sm-4 control-label" style="text-align:right;">To Date</label>
+                          <span class="error col-sm-1" style="padding: 0px;"></span>
+                          <div class="col-sm-7">
+                            <!-- <input type="date" formControlName="toDate" placeholder="YYYY-MM-DD" class="form-control"
+                              pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"> -->
+                              <input class="form-control"   placeholder="DD/MM/YYYY" [bsConfig]="datepickerConfig" formControlName="toDate" bsDatepicker>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="form-group" style="margin-left: 100px">
+                        <button type="submit" [disabled]="!amountawardedreferralForm.valid" style="background:#856c51;"
+                          class="btn btn-success btn-rounded">
+                          <i class="fa fa-eye" aria-hidden="true"></i> View
+                        </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="button" [disabled]="!amountawardedreferralForm.valid"
+                          (click)="exportToExcel(amountawardedreferralForm.value)" class="btn btn-success btn"
+                          style="background-color:#856c51;">
+                          <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                          Export</button>
+                        </div>
+                      </div>
+  
+  
+                    </div>
+                 
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <!-- <label class="col-sm-4 control-label" style="text-align:right;">Mobile</label> -->
+                          <!-- <span class="error col-sm-1" style="padding: 0px;"></span> -->
+                          <div class="col-sm-6">
+                            <input formControlName="mobile" type="text" placeholder="Mobile Number"
+                              (keypress)="keyPress($event)" autocomplete="off" minlength=10 maxlength=10
+                              class="form-control" id="input-help-block" style="margin-left: 15px;">
+                          </div>
+                          <button type="button" class="btn btn-success btn" (click)="amountawardedList(amountawardedreferralForm.value,0)"
+                            style="background-color:#000000;padding: 7px 25px;">SEARCH</button>
+                        </div>
+                      </div>
+  
+                      <div class="col-md-6" style="margin-left: -190px">
+                        <div class="form-group">
+                          <!-- <label class="col-sm-4 control-label" style="text-align:right;">Mobile</label> -->
+                          <!-- <span class="error col-sm-1" style="padding: 0px;"></span> -->
+                          <div class="col-sm-6">
+                            <input formControlName="name" type="text" placeholder="Customer Name"
+                              autocomplete="off" class="form-control" id="input-help-block" style="margin-left: 15px;">
+                          </div>
+                          <button type="button" class="btn btn-success btn" (click)="amountawardedList(amountawardedreferralForm.value,0)"
+                            style="background-color:#000000;padding: 7px 25px;">SEARCH</button>
+                        </div>
+                      </div>
+  
+                    </div>
+                    
+                    <!-- <div class="row text-center">
+  
+                      <div class="col-md-4">
+  
+                      </div>
+                      <div class="col-md-4" style="float: right">
+                        <button type="submit" [disabled]="!amountawardedreferralForm.valid" style="background:#856c51;"
+                          class="btn btn-success btn-rounded">
+                          <i class="fa fa-eye" aria-hidden="true"></i> View
+                        </button>
+                        <button type="button" [disabled]="!amountawardedreferralForm.valid"
+                          (click)="exportToExcel(amountawardedreferralForm.value)" class="btn btn-success btn"
+                          style="background-color:#856c51;float: right;">
+                          <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                          Export</button>
+                      </div>
+                    </div> -->
+  
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Row -->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel panel-white">
+                <!-- <div class="panel-heading clearfix" style="margin-bottom:20px">
+                </div> -->
+                <!-- <form [formGroup]="GpsSearchForm">
+                  <div class="row">
+                    <div class="col-md-6" style="margin-left:550px;">
+                      <div class="form-group">
+                        <button style="float:right;" type="button" class="btn btn-success dropdown-toggle">
+                          <img src="assets/images/search.png" style="float:right;height:20px;width:25px">
+                        </button>
+                        <input type="text" formControlName="search" (keyup)="searchlist(GpsSearchForm.value)" style="width:50%;float:right;display:inline-block;"
+                          class="form-control" placeholder="search">
+                      </div>
+                    </div>
+                  </div>
+                </form> -->
+                <!-- <div class="panel-heading clearfix" style="margin-bottom:20px">
+  
+                </div> -->
+                <div style="clear:both"></div>
+                <div class="panel-body">
+                  <div class="table-responsive">
+                    <table id="example" class="display table" style="width: 100%;">
+                      <thead>
+                        <tr>
+                          
+                          <th  style="background-color: #856c51;color:white;padding-left: 2%">
+                            Customer Name
+  
+                          </th>
+                          <th  style="background-color: #856c51;color:white;padding-left: 2%">
+                            Mobile
+  
+                          </th>
+                          <th  style="background-color: #856c51;color:white;padding-left: 2%">Referral Code
+                            
+  
+                          </th>
+  
+  
+                          <th style="background-color: #856c51;color:white;padding-left: 2%">Accrued Date
+                            
+  
+                          </th>
+                          <th  style="background-color: #856c51;color:white;padding-left: 2%">
+                              Accrued Amount
+  
+                          </th>
+                         
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          *ngFor="let x of amountAwardedListData  | paginate: { itemsPerPage: 10, currentPage: p,totalItems:countItems };let i = index">
+                          <td style="padding-left: 2%">{{x.consumerName}}</td>
+                          <td style="padding-left: 2%">{{x.mobile}}</td>
+                          <td style="padding-left: 2%">{{x.refferalCode}}</td>
+                          <td style="padding-left: 2%">{{x.accuredDate | date:'dd MMM yyyy h:mm a'}}</td>
+                          <td style="padding-left: 2%">{{x.accuredAmount}}</td>
+  
+                          <!-- <td style="padding-left: 2%">{{x.platform}}</td>
+                          <td style="padding-left: 2%">{{x.location}}</td>
+                          <td style="padding-left: 2%">{{x.accruedPoints}}</td>
+                          <td style="padding-left: 2%">{{x.balancePoints}}</td> -->
+                        </tr>
+                      </tbody>
+                    </table>
+  
+                    <div *ngIf="!amountAwardedListData?.length" class="col-md-12 col-centered text-center">
+                      <b>No Data Found</b>
+                    </div>
+                    <pagination-controls (pageChange)="p = $event"
+                    (click)="amountawardedList(amountawardedreferralForm.value,p)" class="my-pagination">
+                  </pagination-controls> 
+                  <!-- <pagination-controls (pageChange)="p = $event;onPaginateChange($event,amountawardedreferralForm.value,p)"
+                    class="my-pagination">
+                  </pagination-controls> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>

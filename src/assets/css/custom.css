@@ -1,0 +1,511 @@
+/* Write your custom CSS here */
+
+select
+{
+    color: #ccc;
+}
+option
+{
+    color: #000;
+}
+option:first-child
+{
+    color: #000;
+    font-weight:bold;
+}
+.page-inner{
+    min-height:630px;
+}
+.nav-tabs   .active {
+    font-size: 14px;
+    font-weight:bold;
+
+} 
+.no_margin_top{
+    margin-top: 0px;
+}
+.fancy {
+    line-height: 0.5;
+    text-align: center;
+    font-size: 18px;
+}
+.fancy span {
+    display: inline-block;
+    position: relative;  
+}
+.fancy span:before,
+.fancy span:after {
+    content: "";
+    position: absolute;
+    height: 5px;
+
+    border-top: 1px solid #E9EDF2;
+    top: 0;
+    width: 600px;
+}
+.fancy span:before {
+    right: 100%;
+    margin-right: 12px;
+    margin-top: 5px;
+}
+.fancy span:after {
+    left: 100%;
+    margin-left: 15px;
+    margin-top: 4px;
+}
+.amp {
+    margin: 0 0 0.25em 0;
+}
+.amp span {
+    font-size: 0.7em;
+}
+
+.copy {
+    font: 1em Georgia, Serif;
+    text-align: justify;
+    -moz-column-count: 2;
+    -moz-column-gap: 20px;
+    -webkit-column-count: 2;
+    -webkit-column-gap: 20px;
+}
+.copy p {
+    margin: 0 0 1em 0;
+}
+.pagination-align{
+    float: right;
+    margin-right: 10px;
+}
+.cursor-pointer{
+    cursor:pointer;
+
+}
+.aligncenter{
+    text-align:center;
+}
+.error{
+    color:red;
+}
+.padding_10
+{
+    padding:10px;
+}
+.dashtable
+{
+    border: 1px solid black;
+    text-align: center;
+    background-color: lightgray;
+    margin-left: 20px;
+    cellspacing: 5px;
+}
+.tablehead
+{
+    border: 1px solid black;
+    font-weight: bolder;
+}
+.tablebody
+{
+    border: 1px solid black;
+    color: purple;
+}
+.usetable
+{
+    width: 500px;
+    height: 590px;
+}
+.scr
+{
+    width: 500px;
+    height: 500px;
+    overflow: visible;
+}
+.vertical-text {
+    transform: rotate(270deg);
+    transform-origin: left top 0;
+}
+/* Put your css in here */
+
+multiselect {
+    display:block;
+}
+multiselect .btn {
+    width: 100%;
+    background-color: #FFF;
+}
+multiselect .btn.error{
+    border: 1px solid #da4f49 !important;
+}
+multiselect .dropdown-menu {
+    max-height: 300px;
+    overflow-y: auto;
+}
+multiselect .dropdown-menu {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2px;
+}
+multiselect .dropdown-menu > li > a {
+    padding: 3px 10px;
+    cursor:pointer;
+}
+.caret.pull-right {
+    margin-top: 7px;
+}
+.pull-left.ng-binding {
+    color: #4e5e6a;
+}
+multiselect .btn.error {
+    border: 1px solid #dce1e4 !important;
+}
+.caret.pull-right
+{
+    color:#555 !important;
+}
+
+
+
+/*.overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.9);
+    overflow-x: hidden;
+    transition: 0.5s;
+}*/
+
+.overlay-content {
+    position: relative;
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+    color: #f1f1f1;
+}
+
+.overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+}
+
+.fade-element-in.ng-enter {
+  transition: 0.8s linear all;
+  opacity: 0;
+}
+
+.fade-element-in-init .fade-element-in.ng-enter {
+  opacity: 1;
+}
+
+.fade-element-in.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+
+.fade-element-in.ng-leave {
+  transition: 0.3s linear all;
+  opacity: 1;
+}
+.fade-element-in.ng-leave.ng-leave-active {
+  opacity: 0;
+}
+.color-green{
+    background-color: #33901b !important;
+}
+.color-red{
+    background-color: #ea2121 !important;
+}
+.color-orange{
+    background-color: #e27e38 !important;
+}
+
+/*radio button*/
+
+.maxl{
+  margin:25px ;
+}
+.inline{
+  display: inline-block;
+}
+.inline + .inline{
+  margin-left:10px;
+}
+.radio{
+  color:#999;
+  font-size:15px;
+  position:relative;
+}
+.radio span{
+  position:relative;
+   padding-left:20px;
+}
+.radio span:after{
+  content:'';
+  width:15px;
+  height:15px;
+  border:3px solid;
+  position:absolute;
+  left:0;
+  top:4px;
+  border-radius:100%;
+  -ms-border-radius:100%;
+  -moz-border-radius:100%;
+  -webkit-border-radius:100%;
+  box-sizing:border-box;
+  -ms-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+}
+.radio input[type="radio"]{
+   cursor: pointer; 
+  position:absolute;
+  width:100%;
+  height:100%;
+  z-index: 1;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"
+}
+.radio input[type="radio"]:checked + span{
+  color:#0093dd;  
+}
+.radio input[type="radio"]:checked + span:before{
+    content:'';
+  width:5px;
+  height:5px;
+  position:absolute;
+  background:#0093dd;
+  left:5px;
+  top:9px;
+  border-radius:100%;
+  -ms-border-radius:100%;
+  -moz-border-radius:100%;
+  -webkit-border-radius:100%;
+}
+
+.status-1approved {
+	padding : 2px 1px 3px 1px;
+	color : #fff;
+	background-color : #1DB198;
+}
+.status-reject {
+	padding : 2px 21px 3px 22px;
+	color : #fff;
+	background-color : #0093dd;
+}
+.status-2approved {
+	padding : 2px 5px 3px 5px;
+	color : #fff;
+	background-color : #1DB198;
+}
+.status-active {
+	padding : 2px 22px 3px 22px;
+	color : #fff;
+	background-color : #1DB198;
+}
+.status-created {
+	padding : 2px 16px 3px 15px;
+	color : #fff;
+	background-color : #a0afa7;
+}
+.status-updated {
+	padding : 2px 16px 3px 15px;
+	color : #fff;
+	background-color : #82d6a9;
+}
+.status-verified {
+	padding : 2px 16px 3px 15px;
+	color : #fff;
+	background-color : #4b8759;
+}
+.status-approved {
+	padding : 2px 10px 3px 10px;
+	color : #fff;
+	background-color : #1DB198;
+}
+.status-approve {
+	padding : 2px 2px 3px 2px;
+	color : #fff;
+	background-color : #6898c1;
+}
+.status-inActive {
+	padding : 2px 15px 3px 14px;
+	color : #fff;
+	background-color : #f59536;
+}
+.status-inProcess {
+	padding : 2px 9px 3px 7px;
+	color : #fff;
+	background-color : #4b67a0;
+}
+.status-resolved {
+	padding : 2px 10px 3px 9px;
+	color : #fff;
+	background-color : #f59536;
+}
+.status-used {
+	padding : 2px 29px 3px 28px;
+	color : #fff;
+	background-color : #0099cc;
+}
+.tForm {
+	margin-bottom:10px;
+}
+.tLabel {
+	margin-bottom:0px;
+}
+
+#reset-btn, #show {
+  display: none;
+}
+
+/**/
+
+@media screen and (max-height: 450px) {
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
+}
+
+
+modal {
+    /* modals are hidden by default */
+    display: none;
+}
+
+.modal {
+    /* modal container fixed across whole screen */
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    /* z-index must be higher than .modal-background */
+    z-index: 1000;
+    
+    /* enables scrolling for tall modals */
+    overflow: auto;
+}
+
+.modal-body {
+    padding: 20px;
+    background: #fff;
+
+    /* margin exposes part of the modal background */
+    margin: 40px;
+}
+
+.modal-background {
+    /* modal background fixed across whole screen */
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    /* semi-transparent black  */
+    background-color: #000;
+    opacity: 0.75;
+    
+    /* z-index must be below .modal and above everything else  */
+    z-index: 900;
+}
+
+body.modal-open {
+    /* body overflow is hidden to hide main scrollbar when modal window is open */
+    overflow: hidden;
+}
+
+
+/*.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #0093dd;
+  width: 50px;
+  height: 50px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  border-width: 9px;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+*/
+/*.loader {
+    background-image: url("../images/preloader.gif");
+}*
+@-webkit-keyframes fade-in{
+    from{
+        opacity:1;
+        top:0px;
+    }
+    to{
+        opacity:0;
+        top:-0px;
+    }
+}
+.text-animated-one{
+    display:inline;
+    position:relative;
+    top:0px;
+    -webkit-animation:fade-in 1.5s infinite;
+
+}
+.blob {
+	position: absolute;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-color: #9F3B59;
+}
+.blob:nth-child(1) {
+	animation: blob-left-anim cubic-bezier(0.770, 0.000, 0.175, 1.000) 2s infinite;
+}
+.blob:nth-child(2) {
+	animation: blob-right-anim cubic-bezier(0.770, 0.000, 0.175, 1.000) 2s infinite;
+}
+
+@keyframes blob-left-anim {
+  0% {transform:scale(1.0) translate(0, 0);}
+  33% {transform:scale(0.5) translate(80px, 0);}
+  66% {transform:scale(0.8) translate(0, 0);}
+  100% {transform:scale(1.0) translate(0, 0);}
+}
+
+@keyframes blob-right-anim {
+  0% {transform:scale(1.0) translate(0, 0);}
+  33% {transform:scale(0.5) translate(-80px, 0);}
+  66% {transform:scale(0.8) translate(0, 0);}
+  100% {transform:scale(1.0) translate(0, 0);}
+}

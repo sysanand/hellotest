@@ -1,0 +1,378 @@
+<main class="page-content content-wrap">
+  <!-- <ng4-loading-spinner [threshold]="2000" [timeout]="4000"  [loadingText]="'Please wait...'" [zIndex]="9999"></ng4-loading-spinner> -->
+  <div class="fix-header fix-sidebar">
+    <div class="page-inner" style="min-height:1200px !important">
+      <div class="page-title">
+        <h3>Add Consumer</h3>
+        <div class="page-breadcrumb">
+          <ol class="breadcrumb">
+            <li>
+              <a routerLink="/">Dashboard</a>
+            </li>
+            <li>
+              <a routerLink="/consumers-list">Consumers</a>
+            </li>
+            <li class="active">Add Consumer</li>
+          </ol>
+        </div>
+      </div>
+      <div id="main-wrapper">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel panel-white">
+              <div class="panel-body">
+                <form class="form-horizontal" [formGroup]="addConsumerForm"
+                  (ngSubmit)="addConsumer(addConsumerForm.value)">
+                  <h2 style="margin-top: 0;">Add Consumer</h2>
+                  <div class="form-group">
+                    <label for="input-help-block" class="col-sm-2 control-label">Name
+                      <span class="error">*</span>
+                    </label>
+                    <div class="col-sm-10">
+                      <input formControlName="firstName" value="" pattern="[a-zA-Z][a-zA-Z ]+" class="form-control"
+                        id="input-help-block" class="form-control" maxlength="30" required autocomplete="off">
+                      <div
+                        *ngIf="addConsumerForm.controls['firstName'].invalid && (addConsumerForm.controls['firstName'].dirty || addConsumerForm.controls['firstName'].touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="addConsumerForm.controls['firstName'].errors.required">
+                          Name required.
+                        </div>
+                        <div *ngIf="addConsumerForm.controls['firstName'].errors.pattern">Invalid Name</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="input-help-block" class="col-sm-2 control-label">Email-Id
+                      <!-- <span class="error">*</span> -->
+                    </label>
+                    <div class="col-sm-10">
+                      <input formControlName="email" value="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                        class="form-control" id="input-help-block" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && addConsumerForm.name.errors }"
+                        autocomplete="off">
+                      <div
+                        *ngIf="addConsumerForm.controls['email'].invalid && (addConsumerForm.controls['email'].dirty || addConsumerForm.controls['email'].touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="addConsumerForm.controls['email'].errors.required">
+                          Email required.
+                        </div>
+                        <div *ngIf="addConsumerForm.controls['email'].errors.pattern">Invalid Email ID</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="input-help-block" class="col-sm-2 control-label">Mobile
+                      <span class="error">*</span>
+                    </label>
+                    <div class="col-sm-10">
+                      <input formControlName="mobile" class="form-control" (keypress)="keyPress($event)" minlength=10
+                        maxlength=10 required autocomplete="off">
+                      <div
+                        *ngIf="addConsumerForm.controls['mobile'].invalid && (addConsumerForm.controls['mobile'].dirty || addConsumerForm.controls['mobile'].touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="addConsumerForm.controls['mobile'].errors.required">
+                          Mobile is required.
+                        </div>
+                        <div *ngIf="addConsumerForm.controls['mobile'].errors.minlength">Mobile No must be 10 characters
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="input-help-block" class="col-sm-2 control-label">State
+                      <!-- <span class="error">*</span> -->
+                    </label>
+                    <div class="col-sm-10">
+                      <select formControlName="state" class="form-control" (change)="GetCityList(t.value)" #t>
+                        <option value="">Select State</option>
+                        <option *ngFor="let x of getStates" value={{x.stateCode}}>{{x.stateName}}</option>
+                      </select>
+                      <div
+                        *ngIf="addConsumerForm.controls['state'].invalid && (addConsumerForm.controls['state'].dirty || addConsumerForm.controls['state'].touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="addConsumerForm.controls['state'].errors.required">
+                          State required.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="input-help-block" class="col-sm-2 control-label">City
+                      <!-- <span class="error">*</span> -->
+                    </label>
+                    <div class="col-sm-10">
+                      <select formControlName="city" class="form-control" (change)="getDealerTeamList(r.value)" #r
+                        >
+                        <option value="">Select City</option>
+                        <option *ngFor="let x of cityLists" value={{x.cityCode}}>{{x.cityName}}</option>
+                      </select>
+                      <div
+                        *ngIf="addConsumerForm.controls['city'].invalid && (addConsumerForm.controls['city'].dirty || addConsumerForm.controls['city'].touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="addConsumerForm.controls['city'].errors.required">
+                          City required.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="input-help-block" class="col-sm-2 control-label">Address 1
+                      <!-- <span class="error">*</span> -->
+                    </label>
+                    <div class="col-sm-10">
+                      <input formControlName="address1" value="" class="form-control" id="input-help-block" 
+                        class="form-control" maxlength=40  autocomplete="off">
+                      <div
+                        *ngIf="addConsumerForm.controls['address1'].invalid && (addConsumerForm.controls['address1'].dirty || addConsumerForm.controls['address1'].touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="addConsumerForm.controls['address1'].errors.required">
+                          Address 1 is required.
+                        </div>
+                        <div *ngIf="addConsumerForm.controls['address1'].errors.maxlength">Address 1 Maximum 40
+                          characters</div>
+                        <div *ngIf="addConsumerForm.controls['address1'].errors.pattern">Invalid Address format</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="input-help-block" class="col-sm-2 control-label">Address 2
+                      <!-- <span class="error">*</span> -->
+                      <!-- "^[A-Za-z0-9].+[^\s]*$" -->
+                    </label>
+                    <div class="col-sm-10">
+                      <input formControlName="address2" value="" class="form-control" id="input-help-block" 
+                        class="form-control" maxlength=40 autocomplete="off">                                         
+                      <div
+                        *ngIf="addConsumerForm.controls['address2'].invalid && (addConsumerForm.controls['address2'].dirty || addConsumerForm.controls['address2'].touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="addConsumerForm.controls['address2'].errors.required">
+                          Address 2 is required.
+                        </div>
+                        <div *ngIf="addConsumerForm.controls['address2'].errors.maxlength">Address 2 Maximum 40
+                          characters</div>
+                        <div *ngIf="addConsumerForm.controls['address2'].errors.pattern">Invalid Address format</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="input-help-block" class="col-sm-2 control-label">Locality / Area
+                      <!-- <span class="error">*</span> -->
+                    </label>
+                    <div class="col-sm-10">
+                      <input formControlName="locality" value="" class="form-control" id="input-help-block" pattern="^[A-Za-z0-9].+[^\s]*$"
+                        class="form-control" maxlength=40  autocomplete="off">
+                      <div
+                        *ngIf="addConsumerForm.controls['locality'].invalid && (addConsumerForm.controls['locality'].dirty || addConsumerForm.controls['locality'].touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="addConsumerForm.controls['locality'].errors.required">
+                          Locality is required.
+                        </div>
+                        <div *ngIf="addConsumerForm.controls['locality'].errors.maxlength">Locality Maximum 40
+                          characters</div>
+                        <div *ngIf="addConsumerForm.controls['locality'].errors.pattern">Invalid Locality format</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="input-help-block" class="col-sm-2 control-label">Pincode
+                      <!-- <span class="error">*</span> -->
+                    </label>
+                    <div class="col-sm-10">
+                      <input formControlName="pincode" value="" (keypress)="numberOnly($event)" class="form-control"
+                        id="input-help-block" class="form-control" minlength=6 maxlength=6  autocomplete="off">
+                      <div
+                        *ngIf="addConsumerForm.controls['pincode'].invalid && (addConsumerForm.controls['pincode'].dirty || addConsumerForm.controls['pincode'].touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="addConsumerForm.controls['pincode'].errors.required">
+                          Pincode is required.
+                        </div>
+                        <div *ngIf="addConsumerForm.controls['pincode'].errors.minlength">Pincode must be 6 characters
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="form-group"> 
+                    <label for="input-help-block" class="col-sm-2 control-label">Account Number
+                    </label>
+                    <div class="col-sm-10">
+                      <input formControlName="bankAccNum" value="" class="form-control" id="input-help-block"
+                        class="form-control" minlength="9" maxlength="18" pattern="[0-9]+" autocomplete="off">
+                      <div
+                        *ngIf="addConsumerForm.controls['bankAccNum'].invalid && (addConsumerForm.controls['bankAccNum'].dirty || addConsumerForm.controls['bankAccNum'].touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="addConsumerForm.controls['bankAccNum'].errors.required">Account Num is required.
+                        </div>
+                        <div *ngIf="addConsumerForm.controls['bankAccNum'].errors.minlength">Account Num Minimum 7
+                          characters</div>
+                        <div *ngIf="addConsumerForm.controls['bankAccNum'].errors.maxlength">Account Num Minimum 15
+                          characters</div>
+                        <div *ngIf="addConsumerForm.controls['bankAccNum'].errors.pattern">Invalid Account Num</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="input-help-block" class="col-sm-2 control-label">IFSC Code
+                    </label>
+                    <div class="col-sm-10">
+                      <input formControlName="ifscCode" #ifscCode value="" pattern="^[A-Z|a-z]{4}[0][A-Za-z0-9]+$"
+                        class="form-control" id="input-help-block"
+                        (input)="ifscCode.value=$event.target.value.toUpperCase()"
+                        (keyup.enter)="loadBankInfo(ifscode.value)" (blur)="loadBankInfo(ifscCode.value)" minlength="11"
+                        maxlength="11" autocomplete="off">
+                      <div
+                        *ngIf="addConsumerForm.controls['ifscCode'].invalid && (addConsumerForm.controls['ifscCode'].dirty || addConsumerForm.controls['ifscCode'].touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="addConsumerForm.controls['ifscCode'].errors.required">
+                          IFSC Code required.
+                        </div>
+                        <div
+                          *ngIf="addConsumerForm.controls['ifscCode'].errors.pattern || addConsumerForm.controls['ifscCode'].errors.minlength">
+                          Invalid IFSC Code</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="input-help-block" class="col-sm-2 control-label">Bank Name
+                    </label>
+                    <div class="col-sm-10">
+                      <input formControlName="bankName" value="" id="input-help-block" class="form-control"
+                        [(ngModel)]="bankdtls.BANK" autocomplete="off">
+                      <div
+                        *ngIf="addConsumerForm.controls['bankName'].invalid && (addConsumerForm.controls['bankName'].dirty || addConsumerForm.controls['bankName'].touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="addConsumerForm.controls['bankName'].errors.required">
+                          Bank Name is required.
+                        </div>
+                        <div *ngIf="addConsumerForm.controls['bankName'].errors.maxlength">Bank Name Maximum 40
+                          characters</div>
+                        <div *ngIf="addConsumerForm.controls['bankName'].errors.pattern">Invalid Bank Name</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="input-help-block" class="col-sm-2 control-label">Branch
+                    </label>
+                    <div class="col-sm-10">
+                      <input formControlName="branch" value="" id="input-help-block" class="form-control"
+                        [(ngModel)]="bankdtls.BRANCH" autocomplete="off">
+                      <div
+                        *ngIf="addConsumerForm.controls['branch'].invalid && (addConsumerForm.controls['branch'].dirty || addConsumerForm.controls['branch'].touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="addConsumerForm.controls['branch'].errors.required">
+                          Branch is required.
+                        </div>
+                        <div *ngIf="addConsumerForm.controls['branch'].errors.maxlength">Branch Name Maximum 40
+                          characters</div>
+                        <div *ngIf="addConsumerForm.controls['branch'].errors.pattern">Invalid Branch Name</div>
+                      </div>
+                    </div>
+                  </div> -->
+
+                  <div class="form-group">
+                    <label for="input-help-block" class="col-sm-2 control-label">PAN
+                      <!-- <span class="error">*</span> -->
+                    </label>
+                    <div class="col-sm-10">
+                      <input formControlName="pan" value="" pattern="^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$"
+                        class="form-control" id="input-help-block" class="form-control" autocomplete="off">
+                      <div
+                        *ngIf="addConsumerForm.controls['pan'].invalid && (addConsumerForm.controls['pan'].dirty || addConsumerForm.controls['pan'].touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="addConsumerForm.controls['pan'].errors.required">
+                          PAN required.
+                        </div>
+                        <div *ngIf="addConsumerForm.controls['pan'].errors.pattern">Invalid PAN</div>
+                      </div>
+                    </div>
+                  </div>
+<!-- 
+                  <div class="form-group">
+                    <label for="input-help-block" class="col-sm-2 control-label">Paytm Number
+                      <span class="error">*</span>
+                    </label>
+                    <div class="col-sm-10">
+                      <input formControlName="paytmNum" class="form-control" (keypress)="keyPress($event)" minlength=10
+                        maxlength=10  autocomplete="off">
+                      <div
+                        *ngIf="addConsumerForm.controls['paytmNum'].invalid && (addConsumerForm.controls['paytmNum'].dirty || addConsumerForm.controls['paytmNum'].touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="addConsumerForm.controls['paytmNum'].errors.required">
+                          Paytm Number is required.
+                        </div>
+                        <div *ngIf="addConsumerForm.controls['paytmNum'].errors.minlength">Paytm Number No must be 10
+                          characters
+                        </div>
+                      </div>
+                    </div>
+                  </div> -->
+                  <div class="form-group">
+                    <label for="input-help-block" class="col-sm-2 control-label">Status
+                      <span class="error">*</span>
+                    </label>
+                    <div class="col-sm-10">
+                      <select formControlName="active" class="form-control" required>
+                        <option value="">Select Status</option>
+                        <option value=1>Active</option>
+                        <option value=0>In Active</option>
+                      </select>
+                      <div
+                        *ngIf="addConsumerForm.controls['active'].invalid && (addConsumerForm.controls['active'].dirty || addConsumerForm.controls['active'].touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="addConsumerForm.controls['active'].errors.required">
+                          Status required.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- <div class="form-group">
+                    <label for="input-help-block" class="col-sm-2 control-label">Document Type
+                      <span class="error">*</span>
+                    </label>
+                    <div class="col-sm-10">
+                      <select formControlName="documentType" class="form-control">
+                        <option value="">Select Status</option>
+                        <option *ngFor="let x of getdocument" value={{x.id}}>{{x.gmName}}</option>
+
+                      </select>
+                      <div
+                        *ngIf="addConsumerForm.controls['documentType'].invalid && (addConsumerForm.controls['documentType'].dirty || addConsumerForm.controls['documentType'].touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="addConsumerForm.controls['documentType'].errors.required">
+                          Document Type required.
+                        </div>
+                      </div>
+                    </div>
+                  </div> -->
+
+                  <div class="form-group">
+                    <label for="input-help-block" class="col-sm-2 control-label">Document
+                      <!-- <span class="error">*</span> -->
+                    </label>
+                    <div class="col-sm-10">
+                      <input type="file" #file multiple  class="form-control"  accept="application/pdf, image/*"> 
+
+                      <!--                       
+                        <div
+                          *ngIf="addConsumerForm.controls['documentType'].invalid && (addConsumerForm.controls['documentType'].dirty || addConsumerForm.controls['documentType'].touched)"
+                          class="alert alert-danger">
+                          <div *ngIf="addConsumerForm.controls['documentType'].errors.required">
+                            Document Type required.
+                          </div>
+                        </div> -->
+                    </div>
+                  </div>
+                </form>
+                <button [disabled]="!addConsumerForm.valid" type="submit" (click)="addConsumer(addConsumerForm.value)"
+                  class="btn btn-success btn-rounded" style="margin-left: 17%; background:#856c51;">
+                  Add
+                </button>
+                <!-- <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>	 -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

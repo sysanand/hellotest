@@ -1,0 +1,107 @@
+<main class="page-content content-wrap">
+    <ng4-loading-spinner [threshold]="2000" [timeout]="4000" [loadingText]="'Please wait...'" [zIndex]="9999">
+    </ng4-loading-spinner>
+    <div class="fix-header fix-sidebar">
+      <div class="page-inner">
+        <div class="page-title">
+          <h3>Virtual Wallet Balance</h3>
+          <div class="page-breadcrumb">
+            <ol class="breadcrumb">
+              <li>
+                <a routerLink="/">Dashboard</a>
+              </li>
+              <li class="active">Virtual Wallet Balance</li>
+            </ol>
+          </div>
+        </div>
+        <div id="main-wrapper">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel">
+                <div class="panel-body" style="margin-top:1.5px;">
+                  <div class="row">
+                      <h4 style="margin-left: 15px">Virtual Wallet Balance &nbsp;&nbsp;&nbsp;{{vitualBalance | currency: 'INR':'symbol':'1.0-0' }}</h4>
+                  </div>
+  
+                  <!-- <form style="margin-top:30px;" [formGroup]="virtualwalletForm"
+                    (ngSubmit)="consumergetRedeemptionList(virtualwalletForm.value,0)" class="form-horizontal"> -->
+  
+                    <div class="row">
+                      
+                      <div class="col-sm-11">
+                        <div class="form-group" style="float: right">
+                         
+                          <button type="button" 
+                            (click)="exportToExcel()" class="btn btn-success btn"
+                            style="background-color:#856c51;">
+                            <i class="fa fa-file-excel-o" aria-hidden="true"></i> 
+                            Export</button>    
+                        </div>
+                      </div>
+  
+                    </div>
+                    
+                  <!-- </form> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Row -->
+  
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel panel-white">
+                
+                <div style="clear:both"></div>
+                <div class="panel-body">
+                  <div class="table-responsive">
+                    <table id="example" class="display table" style="width: 100%;">
+  
+  
+                      <thead>
+                        <tr>
+                         
+                          
+                          <th style="background-color: #856c51;color:white;padding-left: 2%">
+                            Amount Received
+  
+                          </th>
+                          <th  style="background-color: #856c51;color:white;padding-left: 2%">
+                              Coupon Used
+    
+                            </th>
+                          <th  style="background-color: #856c51;color:white;padding-left: 2%">
+                            Virtual Balance
+  
+                          </th>
+  
+                         
+  
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          *ngFor="let x of vitualBalanceListData  | paginate: { itemsPerPage: 10, currentPage: p, totalItems:countItems };let i = index">
+                          <td style="padding-left: 2%">{{x.amountReceived}}</td>
+                        <td style="padding-left: 2%">{{x.couponUsed}}</td>
+                        <td style="padding-left: 2%">{{x.virtualBalance}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+  
+                    <div *ngIf="!vitualBalanceListData?.length" class="col-md-12 col-centered text-center">
+                      <b>No Data Found</b>
+                    </div>
+                    <pagination-controls (pageChange)="p = $event"
+                      (click)="vitualBalanceListData(virtualwalletForm.value,p)" class="my-pagination">
+                    </pagination-controls>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>

@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../src/assets/fonts/fonts.css";
+body{
+
+   overflow-x:hidden 
+}
+
+
+.my-pagination .ngx-pagination .current {
+   background: #856c51;
+ }

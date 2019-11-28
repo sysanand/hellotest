@@ -1,0 +1,101 @@
+.approve{
+    border: green solid 6px;
+background-color: green;
+
+font-weight: bold;
+
+border-radius: 3px;
+
+color: white;
+}
+
+.pending{
+    border: orange solid 6px;
+background-color: orange;
+
+font-weight: bold;
+
+border-radius: 3px;
+
+color: white;
+}
+
+.reject{
+    border: #ff5c33 solid 6px;
+    background-color: #ff5c33;
+    
+    font-weight: bold;
+    
+    border-radius: 3px;
+    
+    color: white;
+}
+.incomplete{
+    border: gray solid 6px;
+    background-color: gray;
+    
+    font-weight: bold;
+    
+    border-radius: 3px;
+    
+    color: white;
+}
+
+.all{
+    padding-left: 25px;
+    padding-right: 25px;
+    border-radius: 50px;
+    background-color:#46b7f0;
+    font-size: 13px;
+    border: 1px solid black;
+    font-weight: 500;
+    color: black;
+}
+
+
+.btnpending{
+    padding-left: 25px;
+    padding-right: 25px;
+    border-radius: 50px;
+    background-color:orange;
+    font-size: 13px;
+    border: 1px solid black;
+    font-weight: 500;
+    color: black;
+}
+
+
+.btnapprove{
+    padding-left: 25px;
+    padding-right: 25px;
+    border-radius: 50px;
+    background-color:green;
+    font-size: 13px;
+    border: 1px solid black;
+    font-weight: 500;
+    color: black;
+}
+
+
+.btnreject{
+    padding-left: 25px;
+    padding-right: 25px;
+    border-radius: 50px;
+    background-color: #ff5c33;
+    font-size: 13px;
+    border: 1px solid black;
+    font-weight: 500;
+    color: black;
+}
+
+
+.btnincomplete{
+    padding-left: 25px;
+    padding-right: 25px;
+    border-radius: 50px;
+    background-color:grey;
+    font-size: 13px;
+    border: 1px solid black;
+    font-weight: 500;
+    color: black;
+}

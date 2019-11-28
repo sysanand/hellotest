@@ -1,0 +1,148 @@
+<main class="page-content content-wrap">
+  <ng4-loading-spinner [threshold]="2000" [timeout]="4000" [loadingText]="'Please wait...'" [zIndex]="9999">
+  </ng4-loading-spinner>
+  <div class="fix-header fix-sidebar">
+    <div class="page-inner">
+      <div class="page-title">
+        <h3>Total Payment Received</h3>
+        <div class="page-breadcrumb">
+          <ol class="breadcrumb">
+            <li>
+              <a routerLink="/">Dashboard</a>
+            </li>
+            <li class="active">Total Payment Received</li>
+          </ol>
+        </div>
+      </div>
+      <div id="main-wrapper">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel">
+              <div class="panel-body" style="margin-top:1.5px;">
+                <div class="row">
+                    <h4 style="margin-left: 15px">Payment Received &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{totalpaymentreceived | currency: 'INR':'symbol':'1.0-0' }}</h4>
+                  <!-- <div class="col-md-2" style="float: right">
+                    <button type="button" class="btn btn-success btn" routerLink="" style="background-color:#856c51;">
+                      <i class="fa fa-plus" aria-hidden="true"></i>Add Payment</button>
+                  </div> -->
+                </div>
+                <form style="margin-top:30px;" [formGroup]="managepaymentForm"
+                  (ngSubmit)="managepaymentList(managepaymentForm.value,0)" class="form-horizontal">
+
+                  <div class="row">
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">From Date</label>
+                        <div class="col-sm-7">
+                          <!-- <input type="date" formControlName="fromDate" class="form-control" placeholder="YYYY-MM-DD"
+                            pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"> -->
+                            <input class="form-control" placeholder="DD/MM/YYYY" [bsConfig]="datepickerConfig" formControlName="fromDate" bsDatepicker>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">To Date</label>
+                        <div class="col-sm-7">
+                          <!-- <input type="date" formControlName="toDate" placeholder="YYYY-MM-DD" class="form-control"
+                            pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"> -->
+                            <input class="form-control"   placeholder="DD/MM/YYYY" [bsConfig]="datepickerConfig" formControlName="toDate" bsDatepicker>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Payment Method</label>
+                        <div class="col-sm-7">
+                          <select selected formControlName="paymentType" class="form-control">
+                            <option value="">
+                              <b>-----Select</b>-----</option>
+                            <option *ngFor="let x of getTransactionData" value="{{x.paymentTypeId}}"
+                              [hidden]="x.paymentTypeId ==2  ||x.paymentTypeId == 4 || x.paymentTypeId==5 || x.paymentTypeId==6 || x.paymentTypeId==7  " >{{x.typeDesc}}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                      <div class="form-group">
+                        <button type="submit" [disabled]="!managepaymentForm.valid" style="background:#856c51;"
+                          class="btn btn-success btn-rounded">
+                          <i class="fa fa-eye" aria-hidden="true"></i> View
+                        </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="button" [disabled]="!managepaymentForm.valid"
+                          (click)="exportToExcel(managepaymentForm.value)" class="btn btn-success btn"
+                          style="background-color:#856c51;">
+                          <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                          Export</button>
+                      </div>
+                    </div>
+
+                  </div>
+                  
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Row -->
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel panel-white">
+              
+              <div style="clear:both"></div>
+              <div class="panel-body">
+                <div class="table-responsive">
+                  <table id="example" class="display table" style="width: 100%;">
+
+
+                    <thead>
+                      <tr>
+                       
+                        <th  style="background-color: #856c51;color:white;padding-left: 2%">
+                          Transaction Date
+
+                        </th>
+                        <th style="background-color: #856c51;color:white;padding-left: 2%">
+                          Amount Received
+
+                        </th>
+                        <th style="background-color: #856c51;color:white;padding-left: 2%">
+                          Payment Method 
+
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr
+                        *ngFor="let x of totalPaymentReceivedListData  | paginate: { itemsPerPage: 10, currentPage: p,totalItems:countItems};let i = index">
+                        <td style="padding-left: 2%">{{x.transactionDate | date:'dd MMM yyyy h:mm a'}}</td>
+                        <td style="padding-left: 2%">{{x.amount}}</td>
+                        <td style="padding-left: 2%">{{x.payment}}</td>
+                        
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div *ngIf="!totalPaymentReceivedListData?.length" class="col-md-12 col-centered text-center">
+                    <b>No Data Found</b>
+                  </div>
+                  <pagination-controls (pageChange)="p = $event"
+                    (click)="managepaymentList(managepaymentForm.value,p)" class="my-pagination">
+                  </pagination-controls>
+                  <!-- <pagination-controls (pageChange)="p = $event;onPaginateChange($event,managepaymentForm.value,p)"
+                    class="my-pagination">
+                  </pagination-controls> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
