@@ -1,0 +1,327 @@
+<<<<<<< HEAD
+/* Write your custom CSS here */
+
+select
+{
+    color: #ccc;
+}
+option
+{
+    color: #000;
+}
+option:first-child
+{
+    color: #000;
+    font-weight:bold;
+}
+.page-inner{
+    min-height:630px;
+}
+.nav-tabs   .active {
+    font-size: 14px;
+    font-weight:bold;
+
+} 
+.no_margin_top{
+    margin-top: 0px;
+}
+.fancy {
+    line-height: 0.5;
+    text-align: center;
+    font-size: 18px;
+}
+.fancy span {
+    display: inline-block;
+    position: relative;  
+}
+.fancy span:before,
+.fancy span:after {
+    content: "";
+    position: absolute;
+    height: 5px;
+
+    border-top: 1px solid #E9EDF2;
+    top: 0;
+    width: 600px;
+}
+.fancy span:before {
+    right: 100%;
+    margin-right: 12px;
+    margin-top: 5px;
+}
+.fancy span:after {
+    left: 100%;
+    margin-left: 15px;
+    margin-top: 4px;
+}
+.amp {
+    margin: 0 0 0.25em 0;
+}
+.amp span {
+    font-size: 0.7em;
+}
+
+.copy {
+    font: 1em Georgia, Serif;
+    text-align: justify;
+    -moz-column-count: 2;
+    -moz-column-gap: 20px;
+    -webkit-column-count: 2;
+    -webkit-column-gap: 20px;
+}
+.copy p {
+    margin: 0 0 1em 0;
+}
+.pagination-align{
+    float: right;
+    margin-right: 10px;
+}
+.cursor-pointer{
+    cursor:pointer;
+
+}
+.aligncenter{
+    text-align:center;
+}
+.error{
+    color:red;
+}
+.padding_10
+{
+    padding:10px;
+}
+.dashtable
+{
+    border: 1px solid black;
+    text-align: center;
+    background-color: lightgray;
+    margin-left: 20px;
+    cellspacing: 5px;
+}
+.tablehead
+{
+    border: 1px solid black;
+    font-weight: bolder;
+}
+.tablebody
+{
+    border: 1px solid black;
+    color: purple;
+}
+.usetable
+{
+    width: 500px;
+    height: 590px;
+}
+.scr
+{
+    width: 500px;
+    height: 500px;
+    overflow: visible;
+}
+.vertical-text {
+    transform: rotate(270deg);
+    transform-origin: left top 0;
+}
+/* Put your css in here */
+
+multiselect {
+    display:block;
+}
+multiselect .btn {
+    width: 100%;
+    background-color: #FFF;
+}
+multiselect .btn.error{
+    border: 1px solid #da4f49 !important;
+}
+multiselect .dropdown-menu {
+    max-height: 300px;
+    overflow-y: auto;
+}
+multiselect .dropdown-menu {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2px;
+}
+multiselect .dropdown-menu > li > a {
+    padding: 3px 10px;
+    cursor:pointer;
+}
+.caret.pull-right {
+    margin-top: 7px;
+}
+.pull-left.ng-binding {
+    color: #4e5e6a;
+}
+multiselect .btn.error {
+    border: 1px solid #dce1e4 !important;
+}
+.caret.pull-right
+{
+    color:#555 !important;
+}
+=======
+/* Write your custom CSS here */
+
+select
+{
+    color: #ccc;
+}
+option
+{
+    color: #000;
+}
+option:first-child
+{
+    color: #000;
+    font-weight:bold;
+}
+.page-inner{
+    min-height:630px;
+}
+.nav-tabs   .active {
+    font-size: 14px;
+    font-weight:bold;
+
+} 
+.no_margin_top{
+    margin-top: 0px;
+}
+.fancy {
+    line-height: 0.5;
+    text-align: center;
+    font-size: 18px;
+}
+.fancy span {
+    display: inline-block;
+    position: relative;  
+}
+.fancy span:before,
+.fancy span:after {
+    content: "";
+    position: absolute;
+    height: 5px;
+
+    border-top: 1px solid #E9EDF2;
+    top: 0;
+    width: 600px;
+}
+.fancy span:before {
+    right: 100%;
+    margin-right: 12px;
+    margin-top: 5px;
+}
+.fancy span:after {
+    left: 100%;
+    margin-left: 15px;
+    margin-top: 4px;
+}
+.amp {
+    margin: 0 0 0.25em 0;
+}
+.amp span {
+    font-size: 0.7em;
+}
+
+.copy {
+    font: 1em Georgia, Serif;
+    text-align: justify;
+    -moz-column-count: 2;
+    -moz-column-gap: 20px;
+    -webkit-column-count: 2;
+    -webkit-column-gap: 20px;
+}
+.copy p {
+    margin: 0 0 1em 0;
+}
+.pagination-align{
+    float: right;
+    margin-right: 10px;
+}
+.cursor-pointer{
+    cursor:pointer;
+
+}
+.aligncenter{
+    text-align:center;
+}
+.error{
+    color:red;
+}
+.padding_10
+{
+    padding:10px;
+}
+.dashtable
+{
+    border: 1px solid black;
+    text-align: center;
+    background-color: lightgray;
+    margin-left: 20px;
+    cellspacing: 5px;
+}
+.tablehead
+{
+    border: 1px solid black;
+    font-weight: bolder;
+}
+.tablebody
+{
+    border: 1px solid black;
+    color: purple;
+}
+.usetable
+{
+    width: 500px;
+    height: 590px;
+}
+.scr
+{
+    width: 500px;
+    height: 500px;
+    overflow: visible;
+}
+.vertical-text {
+    transform: rotate(270deg);
+    transform-origin: left top 0;
+}
+/* Put your css in here */
+
+multiselect {
+    display:block;
+}
+multiselect .btn {
+    width: 100%;
+    background-color: #FFF;
+}
+multiselect .btn.error{
+    border: 1px solid #da4f49 !important;
+}
+multiselect .dropdown-menu {
+    max-height: 300px;
+    overflow-y: auto;
+}
+multiselect .dropdown-menu {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2px;
+}
+multiselect .dropdown-menu > li > a {
+    padding: 3px 10px;
+    cursor:pointer;
+}
+.caret.pull-right {
+    margin-top: 7px;
+}
+.pull-left.ng-binding {
+    color: #4e5e6a;
+}
+multiselect .btn.error {
+    border: 1px solid #dce1e4 !important;
+}
+.caret.pull-right
+{
+    color:#555 !important;
+}
+>>>>>>> d46eec6cf848beb8858771123660edca8f0b1ec3
